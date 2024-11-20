@@ -99,15 +99,17 @@
                                             fechaNac = ?
                     WHERE id_cliente = ?";
             $query = $conexion->prepare($sql);
-            $query->bind_param('sssssssss', $data['apellido'],
+            $query->bind_param('ssssssssi', $data['apellido'],
                                     $data['nombre'],
                                     $data['dni'],
                                     $data['direccion'],
                                     $data['tel'],
-                                    $data['tel_alt'],
+                                    $data['tel_alternativo'],
                                     $data['correo'],
                                     $data['fechaNac'],
                                     $data['id_cliente']);
+
+                                    //return $query;
             return $query->execute();
         }
     }
