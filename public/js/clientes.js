@@ -73,6 +73,7 @@ function editarCliente(id_cliente){
         success : function(respuesta) {
             respuesta = jQuery.parseJSON( respuesta );
             //alert(respuesta[0].tel_alternativo);
+            $('#id_cliente').val(respuesta[0].id_cliente);
             $('#dnie').val(respuesta[0].dni);
             $('#apellidoe').val(respuesta[0].apellido);
             $('#nombree').val(respuesta[0].nombre);
@@ -92,6 +93,7 @@ function actualizarCliente() {
         data:$('#frmEditarCliente').serialize(),
         url:"../servidor/clientes/actualizar.php",
         success:function(respuesta) {
+            //alert($('#frmEditarCliente').serialize());
             
             if (respuesta == 1) {
                 $('#tablaClientes').load('clientes/tabla_clientes.php');
