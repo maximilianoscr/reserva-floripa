@@ -1,6 +1,6 @@
 <?php session_start();
-    include "../../clases/Clientes.php";
-    $Clientes = new Clientes();
-    $id_cliente = $_POST['id_cliente'];
-    echo $Clientes->eliminarCliente($id_cliente);
+    include "../../clases/Departamentos.php";
+    $Departamentos = new Departamentos();
+    $id_departamento = $_POST['id_departamento'];
+    echo $Departamentos->eliminarDepartamento($id_departamento);
 ?>

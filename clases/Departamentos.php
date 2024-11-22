@@ -2,9 +2,9 @@
     include "Conexion.php";
 
     class Departamentos extends Conexion {
-        public function mostrarDepartamentos($id_usuario) {
+        public function mostrarDepartamentos() {
             $conexion = Conexion::conectar();
-            $sql = "SELECT * FROM t_invitados";//hacer vista departamentos
+            $sql = "SELECT * FROM t_habitaciones where baja is null";//hacer vista departamentos
                //     WHERE idInvitado = $id_usuario";
             $respuesta = mysqli_query($conexion, $sql);
             return mysqli_fetch_all($respuesta, MYSQLI_ASSOC);
@@ -12,7 +12,7 @@
 
         public function agregarDepartamento($data) {
             $conexion = Conexion::conectar();
-            $sql = "INSERT INTO t_departamentos (titulo,
+            $sql = "INSERT INTO t_habitaciones (titulo,
                                             direccion,
                                             altura,
                                             tipo_habitacion,
@@ -39,9 +39,9 @@
 
         public function eliminarDepartamento($id_departamento) {
             $conexion = Conexion::conectar();
-            $sql = "DELETE FROM t_departamentos WHERE id_departamento = ?";
+            $sql = "UPDATE t_habitaciones SET baja=1 where id=?";
             $query = $conexion->prepare($sql);
-            $query->bind_param('i', $id_departamento);
+            $query->bind_param('i',  $id_departamento);
             return $query->execute();
         }
 
@@ -64,7 +64,7 @@
         }
        /* public function selectDepartamentos($id_usuario) {
             $conexion = Conexion::conectar();
-            $sql = "SELECT * FROM t_departamentos 
+            $sql = "SELECT * FROM t_habitaciones 
                     WHERE id_usuario = '$id_usuario'";
             $respuesta = mysqli_query($conexion, $sql);
             $select = '<label for="id_departamento">Seleccion un departamento</label>
@@ -100,15 +100,15 @@
 
         public function editarDepartamento($id_departamento) {
             $conexion = Conexion::conectar();
-            $sql = "SELECT * FROM t_departamentos  
-                    WHERE id_departamento = '$id_departamento'";
+            $sql = "SELECT * FROM t_habitaciones  
+                    WHERE id = '$id_departamento'";
             $respuesta = mysqli_query($conexion, $sql);
             return mysqli_fetch_all($respuesta, MYSQLI_ASSOC);
         }
 
         public function actualizarDepartamento($data){
             $conexion = Conexion::conectar();
-            $sql = "UPDATE t_departamentos SET titulo = ?,
+            $sql = "UPDATE t_habitaciones SET titulo = ?,
                                             direccion = ?,
                                             altura = ?,
                                             tipo_habitacion = ?,
@@ -116,11 +116,10 @@
                                             x_mapa = ?,
                                             y_mapa = ?,
                                             capacidad = ?,
-                                            color = ?, 
-                                            imagen = ?,
-                    WHERE id = ?";//revisar id_invitado
+                                            color = ?
+                    WHERE id = ?";//revisar falta AGREGAR IMAGEEEN
             $query = $conexion->prepare($sql);
-            $query->bind_param('sssissssssi', $data['titulo'],
+            $query->bind_param('sssssssssi', $data['titulo'],
                                         $data['direccion'],
                                         $data['altura'],
                                         $data['tipo_habitacion'],
@@ -129,7 +128,6 @@
                                         $data['y_mapa'],
                                         $data['capacidad'],
                                         $data['color'],
-                                        $data['imagen'],
                                         $data['id']);
             return $query->execute();
         }
