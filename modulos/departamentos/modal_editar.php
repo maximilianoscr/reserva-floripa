@@ -12,7 +12,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <input type="text" id="id_departamento" name="id_departamento" hidden>
+          <input type="text" id="id_depto" name="id_depto" hidden>
             <label for="titulou">Titulo del departamento</label>
             <input type="text" class="form-control" id="titulou" name="titulou" required>
             <label for="direccionu">Direccion</label>

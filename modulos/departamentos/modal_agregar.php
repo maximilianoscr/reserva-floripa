@@ -34,7 +34,7 @@
             <label for="color">Color</label>
             <input type="color" class="form-control form-control-color" id="color" name="color" value="#ff0000">
             <label for="imagen">Imagen</label>
-            <input type="file" class="form-control" id="imagen" name="imagen" required>
+            <input type="file" class="form-control" id="imagen" name="imagen" >
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
