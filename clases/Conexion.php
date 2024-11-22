@@ -1,9 +1,9 @@
 <?php
     class Conexion {
-        public $servidor = 'sql103.infinityfree.com';
-        public $usuario = 'if0_37759234';
-        public $password = 'thr8TxXIiqky2zt';
-        public $database = 'if0_37759234_floripa';
+        public $servidor = 'sql10.freesqldatabase.com';
+        public $usuario = 'sql10746493';
+        public $password = 'XJahj5jn4W';
+        public $database = 'sql10746493';
         //public $database = 'floripa';
         public $port = 3306;
 
