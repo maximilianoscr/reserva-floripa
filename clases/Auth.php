@@ -23,8 +23,8 @@
                 $data_usuario = mysqli_fetch_array($respuesta);
                 $password_usuario = $data_usuario['password'];
                 
-                //if (password_verify($password, $password_usuario)) {
-                if ($password == $password_usuario) {
+                if (password_verify($password, $password_usuario)) {
+                //if ($password == $password_usuario) {
                     $_SESSION['usuario'] = $usuario;
                     $_SESSION['id_usuario'] = $data_usuario['id_usuario'];
                     return true;

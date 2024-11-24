@@ -62,23 +62,6 @@
 
             return $select .= '</select>';
         }
-       /* public function selectDepartamentos($id_usuario) {
-            $conexion = Conexion::conectar();
-            $sql = "SELECT * FROM t_habitaciones 
-                    WHERE id_usuario = '$id_usuario'";
-            $respuesta = mysqli_query($conexion, $sql);
-            $select = '<label for="id_departamento">Seleccion un departamento</label>
-                        <select name="id_departamento" id="id_departamento" class="form-select" required>';
-
-            while ($mostrar = mysqli_fetch_array($respuesta)) {
-                $select .= '<option 
-                            value='. $mostrar['id_departamento'] . '>' . 
-                                $mostrar['departamento'] .
-                            '</option>'; 
-            }
-
-            return $select .= '</select>';
-        }*/
 
         public function selectReservasEditar($id_usuario) {
             $conexion = Conexion::conectar();
