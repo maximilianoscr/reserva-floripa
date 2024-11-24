@@ -1,19 +1,21 @@
 <?php session_start();
 
-    include "../../clases/Clientes.php";
-    $Clientes = new Clientes();
+    include "../../clases/Departamentos.php";
+    $Departamentos = new Departamentos();
     $data = array(
-        "apellido" => $_POST['apellido'],
-        "nombre" => $_POST['nombre'],
-        "dni" => $_POST['dni'],
+        "titulo" => $_POST['titulo'],
         "direccion" => $_POST['direccion'],
-        "tel" => $_POST['tel'],
-        "tel_alternativo" => $_POST['tel_alt'],
-        "correo" => $_POST['correo'],
-        "fechaNac" => $_POST['fechaNac']
+        "altura" => $_POST['altura'],
+        "tipo_habitacion" => $_POST['tipo_habitacion'],
+        "descripcion" => $_POST['descripcion'],
+        "x_mapa" => $_POST['x_mapa'],
+        "y_mapa" => $_POST['y_mapa'],
+        "color" => $_POST['color'],
+        "capacidad" => $_POST['capacidad']
+        //y falta la imagen
     );
     //print_r($data);
-    echo $Clientes->agregarCliente($data);
+    echo $Departamentos->agregarDepartamento($data);
 
 
 ?>

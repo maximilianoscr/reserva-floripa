@@ -1,6 +1,6 @@
 <?php session_start();
-    include "../../clases/Clientes.php";
-    $Clientes = new Clientes();
-    $id_cliente = $_POST['id_cliente'];
-    echo json_encode($Clientes->editarCliente($id_cliente));
+    include "../../clases/Departamentos.php";
+    $Departamentos = new Departamentos();
+    $id_departamento = $_POST['id_departamento'];
+    echo json_encode($Departamentos->editarDepartamento($id_departamento));
 ?>

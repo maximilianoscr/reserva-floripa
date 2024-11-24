@@ -1,16 +1,18 @@
 <?php session_start(); 
     include "../../clases/Departamentos.php";
     $Departamentos = new Departamentos();
-    $items = $Departamentos->mostrarDepartamentos($_SESSION['id_usuario']);
+    $items = $Departamentos->mostrarDepartamentos();
 ?>
 
 <table class="table table-sm table-hover" id="tabla_departamentos_load">
     <thead>
         <tr>
-            <th>Departamento</th>
-            <th>Email</th>
-            <th>Nombres</th>
-            <th>Fecha</th>
+            <th>Titulo</th>
+            <th>Descripcion</th>
+            <th>Tipo de habitacion</th>
+            <th>Capacidad</th>
+            <th>Latitud y Longitud</th>
+            <th>Color</th>
             <th>Editar</th>
             <th>Eliminar</th>
         </tr>
@@ -18,20 +20,22 @@
     <tbody>
         <?php foreach ($items as $key):?>
         <tr>
-            <td><?php echo $key['id_invitado'] ?></td>
-            <td><?php echo $key['id_evento'] ?></td>
-            <td><?php echo $key['nombre_invitado'] ?></td>
-            <td><?php echo $key['email'] ?></td>
+            <td><?php echo $key['titulo'] ?></td>
+            <td><?php echo $key['descripcion'] ?></td>
+            <td><?php echo $key['tipo_habitacion'] ?></td>
+            <td><?php echo $key['capacidad'] ?></td>
+            <td><?php echo $key['x_mapa']." ".$key['y_mapa'] ?></td>
+            <td><input type="color" class="form-control form-control-color" id="color" name="color" value="<?php echo $key['color'] ?>" disabled></td>
             <td>
                 <span class="btn btn-warning" data-bs-toggle="modal" 
                 data-bs-target="#modal_editar_departamento" 
-                onclick="editarDepartamento('<?php echo $key['id_invitado'] ?>')">
+                onclick="editarDepartamento('<?php echo $key['id'] ?>')">
                     <i class="fa-solid fa-user-pen"></i>
                 </span>
             </td>
             <td>
                 <span class="btn btn-danger" 
-                onclick="eliminarDepartamento('<?php echo $key['id_invitado'] ?>')">
+                onclick="eliminarDepartamento('<?php echo $key['id'] ?>')">
                     <i class="fa-solid fa-user-xmark"></i>
                 </span>
             </td>

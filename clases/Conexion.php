@@ -1,9 +1,9 @@
 <?php
     class Conexion {
-        public $servidor = 'localhost';
-        public $usuario = 'root';
-        public $password = '';
-        public $database = 'floripa';
+        public $servidor = 'sql10.freesqldatabase.com';
+        public $usuario = 'sql10746493';
+        public $password = 'XJahj5jn4W';
+        public $database = 'sql10746493';
         //public $database = 'floripa';
         public $port = 3306;
 

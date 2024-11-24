@@ -65,19 +65,24 @@ function eliminarDepartamento(id_departamento) {
       })
 }
 
-function editarDepartamento(id_invitado){
+function editarDepartamento(id_departamento){
     $.ajax({
         type: "POST",
         url: "../servidor/departamentos/editar.php",
         data: "id_departamento=" + id_departamento,
         success : function(respuesta) {
             respuesta = jQuery.parseJSON( respuesta );
-
-            $('#emailu').val(respuesta[0].email);
-            $('#id_eventoe').val(respuesta[0].id_evento);
-            $('#id_departamento').val(respuesta[0].id_departamento);
-            $('#nombre_departamentou').val(respuesta[0].nombre_departamento);
-            
+          // alert(respuesta[0].id);
+            $('#id_depto').val(respuesta[0].id);
+            $('#titulou').val(respuesta[0].titulo);
+            $('#direccionu').val(respuesta[0].direccion);
+            $('#alturau').val(respuesta[0].altura);
+            $('#tipo_habitacionu').val(respuesta[0].tipo_habitacion);
+            $('#descripcionu').val(respuesta[0].descripcion);
+            $('#x_mapau').val(respuesta[0].x_mapa);
+            $('#y_mapau').val(respuesta[0].y_mapa);
+            $('#capacidadu').val(respuesta[0].capacidad);
+            $('#coloru').val(respuesta[0].color);
         }
     });
 }
