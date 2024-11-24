@@ -30,7 +30,7 @@ class Conexion {
         $stmt = $this->conn->prepare($sql);
         
         foreach ($data as $key => &$val) {
-            $stmt->bindParam(":$key", $val);
+            $stmt->bind_param(":$key", $val);
         }
         
         if($stmt->execute()) {
@@ -59,7 +59,9 @@ class Consultar extends Conexion
 {
     public function consultar($tabla, $consulto, $condicion)
     {
-        
+        $sql = "SELECT $consulto FROM $tabla WHERE $condicion";
+        $respuesta = mysqli_query($this->getConexion(), $sql);
+        return mysqli_fetch_all($respuesta, MYSQLI_ASSOC);
     }
 }
 class Afectar extends Conexion
@@ -75,7 +77,7 @@ class Afectar extends Conexion
         $stmt = $this->getConexion()->prepare($sql);
         
         foreach ($data as $key => &$val) {
-            $stmt->bindParam(":$key", $val);
+            $stmt->bind_param(":$key", $val);
         }
         
         if($stmt->execute()) {
@@ -95,7 +97,7 @@ class Afectar extends Conexion
         $stmt = $this->getConexion()->prepare($sql);
         
         foreach ($data as $key => &$val) {
-            $stmt->bindParam(":$key", $val);
+            $stmt->bind_param(":$key", $val);
         }
         
         if($stmt->execute()) {
