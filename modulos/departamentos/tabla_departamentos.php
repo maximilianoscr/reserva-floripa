@@ -24,7 +24,11 @@
             <td><?php echo $key['descripcion'] ?></td>
             <td><?php echo $key['tipo_habitacion'] ?></td>
             <td><?php echo $key['capacidad'] ?></td>
-            <td><?php echo $key['x_mapa']." ".$key['y_mapa'] ?></td>
+            <?php if($key['x_mapa'] != '' && $key['y_mapa'] != '' ){ ?>
+                <td><a href="<?php echo "https://www.google.com/maps?q=".$key['x_mapa'].",".$key['y_mapa'] ?>" target="_blank">Haga click para ver la ubicaci&oacute;n</a></td>
+            <?php }else{ ?>
+                <td>Ubicaci&oacute;n no cargada</a></td>
+            <?php } ?>
             <td><input type="color" class="form-control form-control-color" id="color" name="color" value="<?php echo $key['color'] ?>" disabled></td>
             <td>
                 <span class="btn btn-warning" data-bs-toggle="modal" 
