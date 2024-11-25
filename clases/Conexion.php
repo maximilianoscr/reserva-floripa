@@ -40,16 +40,6 @@ class Conexion {
     }
 }
 
-class Consultar extends Conexion
-{
-    public function consultar($tabla, $consulto, $condicion)
-    {
-        $sql = "SELECT $consulto FROM $tabla WHERE $condicion";
-        $respuesta = mysqli_query($this->getConexion(), $sql);
-        return mysqli_fetch_all($respuesta, MYSQLI_ASSOC);
-    }
-}
-
 class Afectar extends Conexion {
     private $conn;
 
@@ -57,7 +47,13 @@ class Afectar extends Conexion {
         $this->conn = $db;
     }
 
-    // Método para insertar datos
+    public function consultar($tabla, $consulto, $condicion)
+    {
+        $sql = "SELECT $consulto FROM $tabla WHERE $condicion";
+        $respuesta = mysqli_query($this->getConexion(), $sql);
+        return mysqli_fetch_all($respuesta, MYSQLI_ASSOC);
+    }
+    
     public function insert($table, $data) {
         $fields = implode(", ", array_keys($data));
         $placeholders = ":" . implode(", :", array_keys($data));
@@ -76,7 +72,6 @@ class Afectar extends Conexion {
         }
     }
 
-    // Método para actualizar datos
     public function update($table, $data, $where) {
         $fields = "";
         foreach ($data as $key => $val) {
@@ -98,7 +93,6 @@ class Afectar extends Conexion {
         }
     }
 
-    // Método para eliminar datos
     public function delete($table, $where) {
         $sql = "DELETE FROM $table WHERE $where";
         $stmt = $this->conn->prepare($sql);
