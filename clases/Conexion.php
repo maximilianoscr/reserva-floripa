@@ -40,12 +40,7 @@ class Conexion {
     }
 }
 
-class Afectar extends Conexion {
-    private $conn;
-
-    public function __construct($db) {
-        $this->conn = $db;
-    }
+class Interacciones extends Conexion {
 
     public function consultar($tabla, $consulto, $condicion)
     {
@@ -59,10 +54,10 @@ class Afectar extends Conexion {
         $placeholders = ":" . implode(", :", array_keys($data));
         
         $sql = "INSERT INTO $table ($fields) VALUES ($placeholders)";
-        $stmt = $this->conn->prepare($sql);
+        $stmt = $this->getConexion()->prepare($sql);
         
         foreach ($data as $key => $val) {
-            $stmt->bindValue(":$key", $val);
+            $stmt->bind_param(":$key", $val);
         }
         
         if($stmt->execute()) {
@@ -80,10 +75,10 @@ class Afectar extends Conexion {
         $fields = rtrim($fields, ", ");
         
         $sql = "UPDATE $table SET $fields WHERE $where";
-        $stmt = $this->conn->prepare($sql);
+        $stmt = $this->getConexion()->prepare($sql);
         
         foreach ($data as $key => $val) {
-            $stmt->bindValue(":$key", $val);
+            $stmt->bind_param(":$key", $val);
         }
         
         if($stmt->execute()) {
@@ -95,7 +90,7 @@ class Afectar extends Conexion {
 
     public function delete($table, $where) {
         $sql = "DELETE FROM $table WHERE $where";
-        $stmt = $this->conn->prepare($sql);
+        $stmt = $this->getConexion()->prepare($sql);
         
         if($stmt->execute()) {
             return true;
