@@ -1,13 +1,9 @@
 <?php session_start();
 
-    $fecha = "";
-    if (isset($_GET['fecha'])) {
-        $fecha = $_GET['fecha'];
-    }
 
     include "../../clases/Reservas.php";
     $Reservas = new Reservas();
-    $items = $Reservas->mostrarReservas($_SESSION['id_usuario'], $fecha);
+    $items = $Reservas->mostrarReservas($_SESSION['id_usuario']);
 ?>
 
 <table class="table table-sm table-hover" id="tabla_reservas_load">
@@ -17,7 +13,7 @@
             <th>Cliente</th>
             <th>Fecha inicio</th>
             <th>Fecha fin</th>
-            <th>Imprimir</th>
+            <th>Ver</th>
             <th>Editar</th>
             <th>Eliminar</th>
         </tr>
@@ -25,26 +21,19 @@
     <tbody>
         <?php foreach ($items as $key ) : ?>
         <tr>
-            <td><?php echo $key['id_reserva'] ?></td>
-            <td><?php echo $key['id_usuario'] ?></td>
+            <td><?php echo $key['depto'] ?></td>
+            <td><?php echo $key['cliente'] ?></td>
             <td><?php echo $key['fecha_inicio'] ?></td>
             <td><?php echo $key['fecha_fin'] ?></td>
 
             
             <td>
-            <?php /*
-                $invitados = $Eventos->hayInvitados($key['id_evento']);
-                if ($invitados > 0) {*/
-            ?>
                 <a href="imprimir_reserva.php?id_reserva=<?php echo $key['id_reserva'] ?>" 
                     class="btn btn-info" 
                     target="_blank">
                      <i class="fa-solid fa-print"></i> 
                      <span class="badge bg-secondary"><?php echo "HOLA MUNDO"; ?></span>
                 </a>
-            <?php
-                //}
-            ?>
             </td>
             
             <td>

@@ -43,7 +43,7 @@
             return $query->execute();
         }
 
-        public function selectReservas($id_cliente) {
+    /*    public function selectReservas($id_cliente) {
             $conexion = Conexion::conectar();
             $sql = "SELECT * FROM t_reservas 
                     WHERE id_cliente = '$id_cliente'";
@@ -61,7 +61,7 @@
             return $select .= '</select>';
         }
 
-    /*    public function selectReservasEditar($id_cliente) {
+        public function selectReservasEditar($id_cliente) {
             $conexion = Conexion::conectar();
             $sql = "SELECT * FROM t_reservas 
                     WHERE id_cliente = '$id_cliente'";
