@@ -4,7 +4,7 @@
     class Clientes extends Conexion {
         public function mostrarClientes($id_usuario) {
             $conexion = Conexion::conectar();
-            $sql = "SELECT * FROM t_clientes ";
+            $sql = "SELECT * FROM t_clientes order by apellido,nombre desc";
                //     WHERE idInvitado = $id_usuario";
             $respuesta = mysqli_query($conexion, $sql);
             return mysqli_fetch_all($respuesta, MYSQLI_ASSOC);
