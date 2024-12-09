@@ -109,8 +109,30 @@
                 WHERE a.id_usuario = '$id_usuario'";
 
             $respuesta = mysqli_query($conexion, $sql);
-            $eventos = mysqli_fetch_all($respuesta, MYSQLI_ASSOC);
+            $reservas = mysqli_fetch_all($respuesta, MYSQLI_ASSOC);
 
-            return json_encode($eventos);
+            return json_encode($reservas);
+        }
+
+        public function retornarDisponibles($ingreso,$egreso){
+            $conexion = Conexion::conectar();
+
+            $sql = "SELECT h.*
+                    FROM t_habitaciones h
+                    LEFT JOIN t_reservas r 
+                        ON h.id = r.id_depto
+                        AND r.baja IS NULL
+                        AND (
+                            (r.fecha_inicio BETWEEN '$ingreso' AND '$egreso') OR
+                            (r.fecha_fin BETWEEN '$ingreso' AND '$egreso') OR
+                            ('$ingreso' BETWEEN r.fecha_inicio AND r.fecha_fin) OR
+                            ('$egreso' BETWEEN r.fecha_inicio AND r.fecha_fin)
+                        )
+                    WHERE h.baja IS NULL
+                    AND r.id_reserva IS NULL";
+            $respuesta = mysqli_query($conexion, $sql);
+            $Deptosdisponibles = mysqli_fetch_all($respuesta, MYSQLI_ASSOC);
+
+            return json_encode($Deptosdisponibles);     
         }
     }

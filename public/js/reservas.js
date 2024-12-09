@@ -7,6 +7,9 @@ function buscarPorFecha() {
     $('#tablaReservas').load('reservas/tabla_reservas.php?fecha=' + fecha);
 }
 
+   // Evento para cargar departamentos según fechas
+   $('#fecha_inicio, #fecha_fin').on('change', cargarDepartamentos);
+
 function agregarReserva(){
 
     $.ajax({
@@ -114,4 +117,47 @@ function actualizarReserva() {
 
     return false;
 
+}
+
+function cargarDepartamentos() {
+    // Obtener valores de las fechas
+   // alert($('#fecha_inicio').val());
+   // alert( $('#fecha_fin').val());
+    let fechaIngreso = $('#fecha_inicio').val();
+    let fechaEgreso = $('#fecha_fin').val();
+    let selector = $('#id_depto');
+
+    // Limpiar el selector antes de agregar nuevas opciones
+    selector.empty();
+
+    if (fechaIngreso && fechaEgreso) {
+        selector.append('<option value="">Cargando departamentos...</option>');
+
+        $.ajax({
+            url: '../servidor/reservas/obtener_departamentos.php',
+            method: 'POST',
+            data: { fecha_ingreso: fechaIngreso, fecha_egreso: fechaEgreso },
+            dataType: 'json',  
+            success: function(response) {        
+            
+                let selector = $('#id_depto');
+                selector.empty(); 
+            
+                if (Array.isArray(response) && response.length > 0) {
+                    response.forEach(function(depto) {
+                        selector.append(`<option value="${depto.id}">${depto.titulo}</option>`);
+                    });
+                } else {
+                    console.error('La respuesta no es un array válido');
+                    selector.append('<option value="">Error al cargar departamentos</option>');
+                }
+            },
+            error: function(xhr, status, error) {
+                console.log("Error en la solicitud:", error);
+            }
+            
+        });
+    } else {
+        selector.append('<option value="">Por favor cargar ingreso y egreso</option>');
+    }
 }

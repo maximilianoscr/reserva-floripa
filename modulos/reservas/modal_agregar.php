@@ -30,6 +30,10 @@ $select_clientes.= '</select>';
           <input type="date" class="form-control" id="fecha_inicio" name="fecha_inicio" required>
           <label for="fecha_fin">Fecha fin</label>
           <input type="date" class="form-control" id="fecha_fin" name="fecha_fin" required>
+          <label for="id_depto">Selecciona el departamento</label>
+          <select name="id_depto" id="id_depto" class="form-select" required="">
+            <option value="">Por favor, cargar ingreso y egreso</option>
+          </select>
           <label for="total">Valor total</label>
           <input type="number" class="form-control" id="total" name="total" required>
           <label for="parcial">Pago</label>
