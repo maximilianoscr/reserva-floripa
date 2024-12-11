@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay'
     },
-    editable: true,
+    editable: false,
     events: '../servidor/fullCalendar/reservas.php'
     });
     calendar.render();

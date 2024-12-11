@@ -81,12 +81,14 @@ function editarReserva(id_reserva){
         data: "id_reserva=" + id_reserva,
         success : function(respuesta) {
             respuesta = jQuery.parseJSON( respuesta );
-            
-            $('#nombre_reservau').val(respuesta[0].reserva);
-            $('#cliente').val(respuesta[0].cliente);
+            $('#nombre_reservau').val(respuesta[0].titulo);
+            $('#deptou').val(respuesta[0].depto);
+            $('#clienteu').val(respuesta[0].cliente);
             $('#fecha_iniciou').val(respuesta[0].fecha_inicio);
             $('#fecha_finu').val(respuesta[0].fecha_fin);
-            $('#obs').val(respuesta[0].obs);
+            $('#totalu').val(respuesta[0].valor_total);
+            $('#parcialu').val(respuesta[0].pago_parcial);
+            $('#obsu').val(respuesta[0].observacion);
             $('#id_reserva').val(respuesta[0].id_reserva);
         }
     });
@@ -120,9 +122,6 @@ function actualizarReserva() {
 }
 
 function cargarDepartamentos() {
-    // Obtener valores de las fechas
-   // alert($('#fecha_inicio').val());
-   // alert( $('#fecha_fin').val());
     let fechaIngreso = $('#fecha_inicio').val();
     let fechaEgreso = $('#fecha_fin').val();
     let selector = $('#id_depto');
@@ -149,7 +148,7 @@ function cargarDepartamentos() {
                     });
                 } else {
                     console.error('La respuesta no es un array válido');
-                    selector.append('<option value="">Error al cargar departamentos</option>');
+                    selector.append('<option value="">No existe disponibilidad para esas fechas</option>');
                 }
             },
             error: function(xhr, status, error) {
