@@ -16,16 +16,18 @@
             $respuesta = Interacciones::consultar("t_usuarios","*","usuario = '$usuario'");
             print_r($respuesta);
             if (count($respuesta) > 0) {
-                // $password_usuario = $data_usuario['password'];
-                
-                // if (password_verify($password, $password_usuario)) {
-                // //if ($password == $password_usuario) {
-                //     $_SESSION['usuario'] = $usuario;
-                //     $_SESSION['id_usuario'] = $data_usuario['id_usuario'];
-                //     return true;
-                // } else {
-                //     return false;
-                // }
+                foreach($respuesta as $resp){
+                    $password_usuario = $resp['password'];
+                    
+                    if (password_verify($password, $password_usuario)) {
+                    //if ($password == $password_usuario) {
+                        $_SESSION['usuario'] = $usuario;
+                        $_SESSION['id_usuario'] = $resp['id_usuario'];
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
             } else {
                 return false;
             }
