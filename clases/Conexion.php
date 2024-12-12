@@ -55,7 +55,7 @@ class Interacciones extends Conexion {
         
         $sql = "INSERT INTO $table ($fields) VALUES ($placeholders)";
         $stmt = $this->getConexion()->prepare($sql);
-        
+        parent::logStdout($sql);
         foreach ($data as $key => $val) {
             $stmt->bind_param(":$key", $val);
         }
