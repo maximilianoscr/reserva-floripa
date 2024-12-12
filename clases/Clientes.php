@@ -18,6 +18,7 @@
             return Interacciones::insert("t_clientes", $data);
         }
 
+        
         public function eliminarCliente($id_cliente) {
             $conexion = Interacciones::conectar();
             $sql = "DELETE FROM t_clientes WHERE id_cliente = ?";
@@ -26,48 +27,8 @@
             return $query->execute();
         }
 
-        public function selectReservas($id_cliente) {
-            $conexion = Interacciones::conectar();
-            $sql = "SELECT * FROM t_reservas 
-                    WHERE id_cliente = '$id_cliente'";
-            $respuesta = mysqli_query($conexion, $sql);
-            $select = '<label for="id_reserva">Selecciona una reserva</label>
-                        <select name="id_reserva" id="id_reserva" class="form-select" required>';
-
-            while ($mostrar = mysqli_fetch_array($respuesta)) {
-                $select .= '<option 
-                            value='. $mostrar['id_reserva'] . '>' . 
-                                $mostrar['titulo'] .
-                            '</option>'; 
-            }
-
-            return $select .= '</select>';
-        }
-
-    /*    public function selectReservasEditar($id_cliente) {
-            $conexion = Interacciones::conectar();
-            $sql = "SELECT * FROM t_reservas 
-                    WHERE id_cliente = '$id_cliente'";
-            $respuesta = mysqli_query($conexion, $sql);
-            $select = '<label for="id_reservae">Selecciona un reserva</label>
-                        <select name="id_reservae" id="id_reservae" class="form-select" required>';
-
-            while ($mostrar = mysqli_fetch_array($respuesta)) {
-                $select .= '<option 
-                            value='. $mostrar['id_reserva'] . '>' . 
-                                $mostrar['titulo'] .
-                            '</option>'; 
-            }
-
-            return $select .= '</select>';
-        }*/
-
+    
         public function editarCliente($id_cliente) {
-            // $conexion = Interacciones::conectar();
-            // $sql = "SELECT * FROM t_clientes  
-            //         WHERE id_cliente = '$id_cliente'";
-            // $respuesta = mysqli_query($conexion, $sql);
-            // return mysqli_fetch_all($respuesta, MYSQLI_ASSOC);
             return Interacciones::consultar("t_clientes","*","id_cliente = '$id_cliente'");
         }
 
