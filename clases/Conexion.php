@@ -49,11 +49,12 @@ class Interacciones extends Conexion {
         return mysqli_fetch_all($respuesta, MYSQLI_ASSOC);
     }
     
-    public function insert($table, $data) {
+    public function insert(string $table,array $data):bool {
         $fields = implode(", ", array_keys($data));
         $placeholders = ":" . implode(", :", array_keys($data));
         
         $sql = "INSERT INTO $table ($fields) VALUES ($placeholders)";
+        parent::logStdout($sql);
         $stmt = $this->getConexion()->prepare($sql);
         
         foreach ($data as $key => $val) {
