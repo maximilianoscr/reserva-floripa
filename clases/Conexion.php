@@ -54,17 +54,19 @@ class Interacciones extends Conexion {
         $placeholders = ":" . implode(", :", array_keys($data));
         
         $sql = "INSERT INTO $table ($fields) VALUES ($placeholders)";
-        $stmt = $this->getConexion()->prepare($sql);
         parent::logStdout($sql);
-        foreach ($data as $key => $val) {
-            $stmt->bind_param(":$key", $val);
-        }
+        // $stmt = $this->getConexion()->prepare($sql);
         
-        if($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
+        // foreach ($data as $key => $val) {
+        //     $stmt->bind_param(":$key", $val);
+        // }
+        
+        // if($stmt->execute()) {
+        //     return true;
+        // } else {
+        //     return false;
+        // }
+        return true;
     }
 
     public function update($table, $data, $where) {
