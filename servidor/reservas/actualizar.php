@@ -4,6 +4,7 @@
     $data = array(
         "id_reserva" => $_POST['id_reserva'],
         "titulo" => $_POST['nombre_reservau'],
+        "id_depto" => $_POST['id_deptou'],
         "fecha_inicio" => $_POST['fecha_iniciou'],
         "fecha_fin" => $_POST['fecha_finu'],
         "total" => $_POST['totalu'],

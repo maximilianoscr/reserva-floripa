@@ -1,6 +1,6 @@
 <?php session_start();
-    $id_usuario = $_SESSION['id_usuario'];
     include "clases/Reservas.php";
     $Reservas = new Reservas();
-    echo $Reservas->fullCalendar($id_usuario);
+    $id_reserva = $_POST['id_reserva'];
+    echo $Reservas->retornarDisponibles('2024/01/01','2024/01/02');
 ?>

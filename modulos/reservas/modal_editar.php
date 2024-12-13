@@ -14,7 +14,8 @@
           <label for="clienteu">Cliente</label>
           <input type="text" class="form-control" id="clienteu" name="clienteu" readonly required>
           <label for="deptou">Departamento</label>
-          <input type="text" class="form-control" id="deptou" name="deptou" readonly required>
+          <select name="id_deptou" id="id_deptou" class="form-select" required="">
+          </select>
           <label for="fecha_iniciou">Fecha inicio</label>
           <input type="date" class="form-control" id="fecha_iniciou" name="fecha_iniciou" required>
           <label for="fecha_finu">Fecha fin</label>
@@ -25,11 +26,11 @@
           <input type="number" class="form-control" id="parcialu" name="parcialu" required>
           <label for="obsu">Observacion</label>
           <input type="text" class="form-control" id="obsu" name="obsu" required>
-        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
         <button class="btn btn-warning">Actualizar</button>
+      </div>
       </div>
     </div>
   </div>

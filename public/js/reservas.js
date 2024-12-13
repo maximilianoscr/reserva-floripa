@@ -38,7 +38,7 @@ function agregarReserva(){
     return false;
 }
 
-function eliminarEvento(id_evento) {
+function eliminarReserva(id_reserva) {
     Swal.fire({
         title: 'Estas seguro de eliminar esta reserva?',
         text: "Una vez eliminado, no podra ser recuperado",
@@ -51,7 +51,7 @@ function eliminarEvento(id_evento) {
         if (result.isConfirmed) {
             $.ajax({
                 type:"POST",
-                data:'id_reserva=' + id_evento,
+                data:'id_reserva=' + id_reserva,
                 url:"../servidor/reservas/eliminar.php",
                 success:function(respuesta) {
                     if (respuesta == 1) {
@@ -82,7 +82,7 @@ function editarReserva(id_reserva){
         success : function(respuesta) {
             respuesta = jQuery.parseJSON( respuesta );
             $('#nombre_reservau').val(respuesta[0].titulo);
-            $('#deptou').val(respuesta[0].depto);
+            $('#id_deptou').append(`<option value="${respuesta[0].id_depto}">${respuesta[0].depto}</option>`);
             $('#clienteu').val(respuesta[0].cliente);
             $('#fecha_iniciou').val(respuesta[0].fecha_inicio);
             $('#fecha_finu').val(respuesta[0].fecha_fin);
@@ -90,8 +90,68 @@ function editarReserva(id_reserva){
             $('#parcialu').val(respuesta[0].pago_parcial);
             $('#obsu').val(respuesta[0].observacion);
             $('#id_reserva').val(respuesta[0].id_reserva);
+            // Almacenar el ID del departamento original
+            $('#id_deptou').data('original-depto', respuesta[0].id_depto);
+            configurarEventosDeFecha();
         }
     });
+}
+function configurarEventosDeFecha() {
+    $('#fecha_iniciou, #fecha_finu').off('change').on('change', function () {
+        actualizarDepartamentosDisponibles();
+    });
+}
+function actualizarDepartamentosDisponibles() {
+    const fechaInicio = $('#fecha_iniciou').val();
+    const fechaFin = $('#fecha_finu').val();
+    const deptoOriginal = $('#id_deptou').data('original-depto');
+
+    if (fechaInicio && fechaFin) {
+        $.ajax({
+            url: "../servidor/reservas/obtener_departamentos.php",
+            type: "POST",
+            dataType: "json", // Asegura que la respuesta se interprete como JSON
+            data: {
+                fecha_ingreso: fechaInicio,
+                fecha_egreso: fechaFin
+            },
+            success: function (respuesta) {
+                if (Array.isArray(respuesta)) {
+                    $('#id_deptou').empty();
+
+                    if (respuesta.length === 0) {
+                        // No hay departamentos disponibles
+                        $('#id_deptou').append(
+                            `<option value="">No existe disponibilidad</option>`
+                        );
+                        $('#id_deptou').prop('disabled', true);
+                    } else {
+                        // Hay departamentos disponibles
+                        $('#id_deptou').prop('disabled', false);
+                        let deptoDisponible = false;
+
+                        respuesta.forEach(depto => {
+                            const seleccionado = depto.id == deptoOriginal ? 'selected' : '';
+                            if (seleccionado) deptoDisponible = true;
+                            $('#id_deptou').append(
+                                `<option value="${depto.id}" ${seleccionado}>${depto.titulo}</option>`
+                            );
+                        });
+
+                        // Si el departamento original no está disponible, seleccionar el primero de la lista
+                        if (!deptoDisponible && respuesta.length > 0) {
+                            $('#id_deptou').val(respuesta[0].id);
+                        }
+                    }
+                } else {
+                    console.error("La respuesta no es un arreglo:", respuesta);
+                }
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error("Error en la solicitud AJAX:", textStatus, errorThrown);
+            }
+        });
+    }
 }
 
 function actualizarReserva() {

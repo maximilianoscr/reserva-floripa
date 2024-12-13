@@ -28,6 +28,7 @@
                             DATE(a.fecha_inicio) AS fecha_inicio, 
                             DATE(a.fecha_fin) AS fecha_fin,
                             b.titulo as depto,
+                            b.id as id_depto,
                             CONCAT(c.apellido,', ', c.nombre) as cliente 
                         FROM t_reservas a 
                         INNER JOIN t_habitaciones b ON a.id_depto=b.id 
@@ -89,11 +90,11 @@
                     WHERE id_reserva = ?";
 
             $query = $conexion->prepare($sql);
-            $query->bind_param('iiisssiisi', $data['id_usuario'], 
+            $query->bind_param('isssiisi', $data['id_usuario'], 
                                     $data['titulo'],
                                     $fecha_inicio, // Fecha con hora específica
                                     $fecha_fin,    // Fecha con hora específica
-                                    $data['totaL'],
+                                    $data['total'],
                                     $data['parcial'],
                                     $data['obs'],
                                     $data['id_reserva']);

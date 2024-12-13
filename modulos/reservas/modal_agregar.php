@@ -5,6 +5,7 @@ $Clientes = new Clientes();
 $items = $Clientes->mostrarClientes(1);
 $select_clientes="<label for='id_cliente'>Selecciona un cliente</label>".
                 "<select name='id_cliente' id='id_cliente' class='form-select' required>'";
+                $select_clientes.='<option value=-1>SELECCIONAR UN CLIENTE</option>'; 
 foreach($items as $id => $dato){
   $select_clientes.='<option value='. $dato['id_cliente'] . '>' . 
                                $dato['apellido'] .", ".$dato['nombre']." (".$dato['id_cliente'].")".
@@ -13,7 +14,6 @@ foreach($items as $id => $dato){
 $select_clientes.= '</select>';
 
 ?>
-<!-- Modal -->
 <form id="frmAgregarReserva" onsubmit="return agregarReserva()">
   <div class="modal fade" id="modal_agregar_reserva" tabindex="-1" aria-labelledby="modal_agregar_reservaLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -43,7 +43,7 @@ $select_clientes.= '</select>';
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button class="btn btn-purple">Guardar</button>
+          <button class="btn btn-warning">Cargar</button>
         </div>
       </div>
     </div>
