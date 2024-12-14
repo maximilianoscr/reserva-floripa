@@ -1,5 +1,5 @@
 <?php  
-  $select = $Clientes->selectReservas($_SESSION['id_usuario']);
+  //$select = $Clientes->selectReservas($_SESSION['id_usuario']);
 ?>
 
 <form id="frmAgregarCliente" onsubmit="return agregarCliente()">

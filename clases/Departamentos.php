@@ -15,25 +15,23 @@
             $sql = "INSERT INTO t_habitaciones (titulo,
                                             direccion,
                                             altura,
-                                            tipo_habitacion,
+                                            cantidad_habitacion,
                                             descripcion,
-                                            x_mapa,
-                                            y_mapa,
+                                            ubi,
                                             capacidad,
-                                            color, 
-                                            imagen) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                                            color,
+                                            precio1) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $query = $conexion->prepare($sql);
-            $query->bind_param('sssissssss', $data['titulo'],
+            $query->bind_param('sssisssss', $data['titulo'],
                                         $data['direccion'],
                                         $data['altura'],
-                                        $data['tipo_habitacion'],
+                                        $data['habitaciones'],
                                         $data['descripcion'],
-                                        $data['x_mapa'],
-                                        $data['y_mapa'],
+                                        $data['ubi'],
                                         $data['capacidad'],
-                                        $data['color'],
-                                        $data['imagen']);
+                                        $data['precio1'],
+                                        $data['color']);
             return $query->execute();
         }
 
@@ -94,23 +92,24 @@
             $sql = "UPDATE t_habitaciones SET titulo = ?,
                                             direccion = ?,
                                             altura = ?,
-                                            tipo_habitacion = ?,
+                                            cantidad_habitacion = ?,
                                             descripcion = ?,
-                                            x_mapa = ?,
-                                            y_mapa = ?,
+                                            ubi = ?,
                                             capacidad = ?,
-                                            color = ?
+                                            color = ?,
+                                            precio1 = ?
+                                            
                     WHERE id = ?";//revisar falta AGREGAR IMAGEEEN
             $query = $conexion->prepare($sql);
             $query->bind_param('sssssssssi', $data['titulo'],
                                         $data['direccion'],
                                         $data['altura'],
-                                        $data['tipo_habitacion'],
+                                        $data['habitaciones'],
                                         $data['descripcion'],
-                                        $data['x_mapa'],
-                                        $data['y_mapa'],
+                                        $data['ubi'],
                                         $data['capacidad'],
                                         $data['color'],
+                                        $data['precio1'],
                                         $data['id']);
             return $query->execute();
         }

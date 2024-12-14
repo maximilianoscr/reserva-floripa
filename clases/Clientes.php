@@ -27,7 +27,6 @@
             return $query->execute();
         }
 
-    
         public function editarCliente($id_cliente) {
             return Interacciones::consultar("t_clientes","*","id_cliente = '$id_cliente'");
         }
