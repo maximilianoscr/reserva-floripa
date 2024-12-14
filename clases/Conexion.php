@@ -6,24 +6,22 @@ class Conexion {
 
     public function __construct()
     {
-        // $servidor = 'sql10.freesqldatabase.com';
-        // $usuario = 'sql10746493';
-        // $password = 'XJahj5jn4W';
-        // $database = 'sql10746493';
         $this->servidor = 'localhost'; //testing local
         $this->usuario = 'root';
         $this->password = '';
         $this->database = 'floripa';
-        //$this->database = 'floripa';
         $this->port = 3306;
 
-        $this->conn = mysqli_connect( $this->servidor, $this->usuario, $this->password, $this->database, $this->port );
+        try {
+            $dsn = "mysql:host={$this->servidor};dbname={$this->database};port={$this->port}";
+            $this->conn = new PDO($dsn, $this->usuario, $this->password);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch (PDOException $e) {
+            die("Conexión fallida: " . $e->getMessage());
+        }
     }
 
-    protected function getConexion() 
-    {
-        return $this->conn;
-    }
+    protected function getConexion() { return $this->conn; }
 
     protected function logStdout(mixed $aImprimir, int $file=0, int $ver=1) :bool
     {
@@ -45,30 +43,32 @@ class Interacciones extends Conexion {
     public function consultar($tabla, $consulto, $condicion)
     {
         $sql = "SELECT $consulto FROM $tabla WHERE $condicion";
-        $respuesta = mysqli_query($this->getConexion(), $sql);
-        return mysqli_fetch_all($respuesta, MYSQLI_ASSOC);
+        $stmt = $this->getConexion()->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    
-    public function insert(string $table,array $data):bool {
+
+    public function insert(string $table, array $data): bool {
         $fields = implode(", ", array_keys($data));
         $placeholders = ":" . implode(", :", array_keys($data));
         
         $sql = "INSERT INTO $table ($fields) VALUES ($placeholders)";
-        parent::logStdout($sql);
+        
         $stmt = $this->getConexion()->prepare($sql);
         
         foreach ($data as $key => $val) {
-            $stmt->bind_param(":$key", $val);
+            $stmt->bindValue(":$key", $val);
         }
         
-        if($stmt->execute()) {
+        if ($stmt->execute()) {
             return true;
         } else {
+            parent::logStdout("Error en la ejecución de la declaración: " . implode(", ", $stmt->errorInfo()));
             return false;
         }
     }
 
-    public function update($table, $data, $where) {
+    public function update($table, $data, $where): bool {
         $fields = "";
         foreach ($data as $key => $val) {
             $fields .= "$key = :$key, ";
@@ -76,26 +76,30 @@ class Interacciones extends Conexion {
         $fields = rtrim($fields, ", ");
         
         $sql = "UPDATE $table SET $fields WHERE $where";
+        parent::logStdout($sql);
         $stmt = $this->getConexion()->prepare($sql);
         
         foreach ($data as $key => $val) {
-            $stmt->bind_param(":$key", $val);
+            $stmt->bindValue(":$key", $val);
         }
         
-        if($stmt->execute()) {
+        if ($stmt->execute()) {
             return true;
         } else {
+            parent::logStdout("Error en la ejecución de la declaración: " . implode(", ", $stmt->errorInfo()));
             return false;
         }
     }
 
-    public function delete($table, $where) {
+    public function delete($table, $where): bool {
         $sql = "DELETE FROM $table WHERE $where";
+        parent::logStdout($sql);
         $stmt = $this->getConexion()->prepare($sql);
         
-        if($stmt->execute()) {
+        if ($stmt->execute()) {
             return true;
         } else {
+            parent::logStdout("Error en la ejecución de la declaración: " . implode(", ", $stmt->errorInfo()));
             return false;
         }
     }

@@ -2,9 +2,17 @@
     include "Conexion.php";
 
     class Auth extends Interacciones {
-        public function registrar($usuario, $password) {
-            $data = ["usuario" => $usuario, "password" => $password];
-            return Interacciones::insert('t_usuarios', $data);
+        public function registrar($usuario, $password):bool {
+            if ($this->usuarioExiste($usuario)) {
+                return false;
+            }
+            
+            $data = [
+                'usuario' => $usuario,
+                'password' => $password
+            ];
+            
+            return $this->insert('t_usuarios', $data);
         }
 
         public function logear(string $usuario,string $password): bool {
@@ -26,7 +34,16 @@
             } else {
                 return false;
             }
-        }   
+        }
+        
+        public function usuarioExiste(string $usuario): bool {
+            $sql = "SELECT COUNT(*) FROM t_usuarios WHERE usuario = :usuario";
+            $stmt = $this->getConexion()->prepare($sql);
+            $stmt->bindValue(':usuario', $usuario);
+            $stmt->execute();
+            $count = $stmt->fetchColumn();
+            return $count > 0;
+        }
     }
 
 ?>
