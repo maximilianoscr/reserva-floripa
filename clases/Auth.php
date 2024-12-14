@@ -4,8 +4,7 @@
     class Auth extends Interacciones {
         public function registrar($usuario, $password) {
             $data = ["usuario" => $usuario, "password" => $password];
-            parent::logStdout($data);
-            //return Interacciones::insert('t_usuarios', $data);
+            return Interacciones::insert('t_usuarios', $data);
         }
 
         public function logear(string $usuario,string $password): bool {

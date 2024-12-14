@@ -59,13 +59,13 @@ class Interacciones extends Conexion {
         foreach ($data as $key => $val) {
             $stmt->bindValue(":$key", $val);
         }
-        
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            parent::logStdout("Error en la ejecución de la declaración: " . implode(", ", $stmt->errorInfo()));
-            return false;
-        }
+        return false;
+        // if ($stmt->execute()) {
+        //     return true;
+        // } else {
+        //     parent::logStdout("Error en la ejecución de la declaración: " . implode(", ", $stmt->errorInfo()));
+        //     return false;
+        // }
     }
 
     public function update($table, $data, $where): bool {
