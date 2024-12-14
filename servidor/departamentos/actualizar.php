@@ -7,11 +7,11 @@
         "titulo" => $_POST['titulou'],
         "direccion" => $_POST['direccionu'],
         "altura" => $_POST['alturau'],
-        "tipo_habitacion" => $_POST['tipo_habitacionu'],
+        "habitaciones" => $_POST['habitacionesu'],
         "descripcion" => $_POST['descripcionu'],
-        "x_mapa" => $_POST['x_mapau'],
-        "y_mapa" => $_POST['y_mapau'],
+        "ubi" => $_POST['x_mapau'],
         "color" => $_POST['coloru'],
+        "precio1" => $_POST['preciou'],
         "capacidad" => $_POST['capacidadu']
     );
     

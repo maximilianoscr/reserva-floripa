@@ -39,7 +39,7 @@
                 <button class="btn btn-lg btn-purple btn-login fw-bold text-uppercase" type="submit">Registrar</button>
               </div>
 
-              <a class="d-block text-center mt-2 small" href="index.php">Si tienes una cuenta, entra!</a>
+              <a class="d-block text-center mt-2 small" href="index.html">Si tienes una cuenta, entra!</a>
 
               <hr class="my-4">
             </form>
