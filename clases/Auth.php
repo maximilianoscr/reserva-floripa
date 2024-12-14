@@ -2,7 +2,7 @@
     include "Conexion.php";
 
     class Auth extends Interacciones {
-        public function registrar($usuario, $password) {
+        public function registrar($usuario, $password):bool {
             $data = ["usuario" => $usuario, "password" => $password];
             return Interacciones::insert('t_usuarios', $data);
         }
