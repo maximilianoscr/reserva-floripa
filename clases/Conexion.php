@@ -6,10 +6,10 @@ class Conexion {
 
     public function __construct()
     {
-        $this->servidor = 'localhost'; //testing local
-        $this->usuario = 'root';
-        $this->password = '';
-        $this->database = 'floripa';
+        $this->servidor = 'localhost'; //local
+        $this->usuario = 'c2731026_floripa';
+        $this->password = 'biwo66giPU';
+        $this->database = 'c2731026_floripa';
         $this->port = 3306;
 
         try {
