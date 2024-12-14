@@ -7,8 +7,7 @@
     $Auth = new Auth();
 
     if ($Auth->registrar($usuario, $password)) {
-        //header("location:../../index.php");
-        echo "Registro!!!";
+        header("location:../../index.php");
     } else {
         echo "No se pudo registrar";
     }
