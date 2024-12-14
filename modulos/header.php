@@ -20,14 +20,4 @@
     
     <title>Reservas floripa </title>
   </head>
-  <style>
-    body {
-      background-image: url('../public/img/fondo.webp'); 
-      background-size: cover;       
-      background-position: center; 
-      background-repeat: no-repeat;
-      background-attachment: fixed;
-      background-color: #f0f0f0;    
-    }
-  </style>
   <body style="background-color: #f8f9fa;">

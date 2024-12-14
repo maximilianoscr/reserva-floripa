@@ -1,12 +1,12 @@
 body {
   background: #8a3fd0;
-  background: linear-gradient(to right, #8a3fd0, #8a3fd0);
+  background: linear-gradient(to right, #d0d03f, #3fd063);
 }
   
   .card-img-left {
     width: 45%;
     /* Link to your background image using in the property below! */
-    background: scroll center url('../img/registro.jpg');
+    background: scroll center url('../img/login.webp');
     background-size: cover;
   }
   
