@@ -9,7 +9,7 @@
     if ($Auth->registrar($usuario, $password)) {
         header("location:../../");
     } else {
-        echo "No se pudo registrar";
+        echo "El usuario ya existe o no se pudo registrar";
     }
 
 ?>
