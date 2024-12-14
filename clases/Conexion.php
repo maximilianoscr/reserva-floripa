@@ -53,19 +53,19 @@ class Interacciones extends Conexion {
         $placeholders = ":" . implode(", :", array_keys($data));
         
         $sql = "INSERT INTO $table ($fields) VALUES ($placeholders)";
-        parent::logStdout($sql);
+        
         $stmt = $this->getConexion()->prepare($sql);
         
         foreach ($data as $key => $val) {
             $stmt->bindValue(":$key", $val);
         }
-        return false;
-        // if ($stmt->execute()) {
-        //     return true;
-        // } else {
-        //     parent::logStdout("Error en la ejecución de la declaración: " . implode(", ", $stmt->errorInfo()));
-        //     return false;
-        // }
+        
+        if ($stmt->execute()) {
+            return true;
+        } else {
+            parent::logStdout("Error en la ejecución de la declaración: " . implode(", ", $stmt->errorInfo()));
+            return false;
+        }
     }
 
     public function update($table, $data, $where): bool {
