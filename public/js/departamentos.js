@@ -46,7 +46,7 @@ function eliminarDepartamento(id_departamento) {
                 url:"../servidor/departamentos/eliminar.php",
                 success:function(respuesta) {
                     if (respuesta == 1) {
-                        $('#tablaDepartmanentos').load('departamentos/tabla_departamentos.php');
+                        $('#tablaDepartamentos').load('departamentos/tabla_departamentos.php');
                         Swal.fire({
                             title: 'Exito!',
                             text: 'Eliminado',
@@ -79,8 +79,7 @@ function editarDepartamento(id_departamento){
             $('#alturau').val(respuesta[0].altura);
             $('#tipo_habitacionu').val(respuesta[0].tipo_habitacion);
             $('#descripcionu').val(respuesta[0].descripcion);
-            $('#x_mapau').val(respuesta[0].x_mapa);
-            $('#y_mapau').val(respuesta[0].y_mapa);
+            $('#x_mapau').val(respuesta[0].ubi);
             $('#capacidadu').val(respuesta[0].capacidad);
             $('#coloru').val(respuesta[0].color);
         }

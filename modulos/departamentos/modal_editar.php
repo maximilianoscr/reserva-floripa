@@ -27,10 +27,8 @@
             </select>
             <label for="descripcionu">Descripcion</label>
             <input type="text" class="form-control" id="descripcionu" name="descripcionu" required>
-            <label for="x_mapau">Latitud</label>
+            <label for="x_mapau">Ubicacion</label>
             <input type="text" class="form-control" id="x_mapau" name="x_mapau" >
-            <label for="y_mapau">Longitud</label>
-            <input type="text" class="form-control" id="y_mapau" name="y_mapau" >
             <label for="capacidadu">Capacidad en personas</label>
             <input type="number" class="form-control" id="capacidadu" name="capacidadu" required>
             <label for="coloru">Color</label>

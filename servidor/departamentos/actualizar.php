@@ -9,8 +9,7 @@
         "altura" => $_POST['alturau'],
         "tipo_habitacion" => $_POST['tipo_habitacionu'],
         "descripcion" => $_POST['descripcionu'],
-        "x_mapa" => $_POST['x_mapau'],
-        "y_mapa" => $_POST['y_mapau'],
+        "ubi" => $_POST['x_mapau'],
         "color" => $_POST['coloru'],
         "capacidad" => $_POST['capacidadu']
     );

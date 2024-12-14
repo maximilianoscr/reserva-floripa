@@ -11,7 +11,7 @@
             <th>Descripcion</th>
             <th>Tipo de habitacion</th>
             <th>Capacidad</th>
-            <th>Latitud y Longitud</th>
+            <th>Ubicacion</th>
             <th>Color</th>
             <th>Editar</th>
             <th>Eliminar</th>
@@ -24,8 +24,8 @@
             <td><?php echo $key['descripcion'] ?></td>
             <td><?php echo $key['tipo_habitacion'] ?></td>
             <td><?php echo $key['capacidad'] ?></td>
-            <?php if($key['x_mapa'] != '' && $key['y_mapa'] != '' ){ ?>
-                <td><a href="<?php echo "https://www.google.com/maps?q=".$key['x_mapa'].",".$key['y_mapa'] ?>" target="_blank">Haga click para ver la ubicaci&oacute;n</a></td>
+            <?php if($key['ubi'] != '' ){ ?>
+                <td><a href="<?php echo "https://www.google.com/maps?q=".$key['ubi']; ?>" target="_blank">Haga click para ver la ubicaci&oacute;n</a></td>
             <?php }else{ ?>
                 <td>Ubicaci&oacute;n no cargada</a></td>
             <?php } ?>

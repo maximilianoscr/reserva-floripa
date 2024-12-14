@@ -17,23 +17,19 @@
                                             altura,
                                             tipo_habitacion,
                                             descripcion,
-                                            x_mapa,
-                                            y_mapa,
+                                            ubi,
                                             capacidad,
-                                            color, 
-                                            imagen) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                                            color) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             $query = $conexion->prepare($sql);
-            $query->bind_param('sssissssss', $data['titulo'],
+            $query->bind_param('sssissss', $data['titulo'],
                                         $data['direccion'],
                                         $data['altura'],
                                         $data['tipo_habitacion'],
                                         $data['descripcion'],
-                                        $data['x_mapa'],
-                                        $data['y_mapa'],
+                                        $data['ubi'],
                                         $data['capacidad'],
-                                        $data['color'],
-                                        $data['imagen']);
+                                        $data['color']);
             return $query->execute();
         }
 
@@ -113,19 +109,17 @@
                                             altura = ?,
                                             tipo_habitacion = ?,
                                             descripcion = ?,
-                                            x_mapa = ?,
-                                            y_mapa = ?,
+                                            ubi = ?,
                                             capacidad = ?,
                                             color = ?
                     WHERE id = ?";//revisar falta AGREGAR IMAGEEEN
             $query = $conexion->prepare($sql);
-            $query->bind_param('sssssssssi', $data['titulo'],
+            $query->bind_param('ssssssssi', $data['titulo'],
                                         $data['direccion'],
                                         $data['altura'],
                                         $data['tipo_habitacion'],
                                         $data['descripcion'],
-                                        $data['x_mapa'],
-                                        $data['y_mapa'],
+                                        $data['ubi'],
                                         $data['capacidad'],
                                         $data['color'],
                                         $data['id']);

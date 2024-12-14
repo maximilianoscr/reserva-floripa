@@ -25,10 +25,8 @@
             </select>
             <label for="descripcion">Descripcion</label>
             <input type="text" class="form-control" id="descripcion" name="descripcion" required>
-            <label for="x_mapa">Latitud</label>
+            <label for="x_mapa">Ubicacion</label>
             <input type="text" class="form-control" id="x_mapa" name="x_mapa" >
-            <label for="y_mapa">Longitud</label>
-            <input type="text" class="form-control" id="y_mapa" name="y_mapa" >
             <label for="capacidad">Capacidad en personas</label>
             <input type="number" class="form-control" id="capacidad" name="capacidad" required>
             <label for="color">Color</label>

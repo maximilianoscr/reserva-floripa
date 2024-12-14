@@ -8,8 +8,7 @@
         "altura" => $_POST['altura'],
         "tipo_habitacion" => $_POST['tipo_habitacion'],
         "descripcion" => $_POST['descripcion'],
-        "x_mapa" => $_POST['x_mapa'],
-        "y_mapa" => $_POST['y_mapa'],
+        "ubi" => $_POST['x_mapa'],
         "color" => $_POST['color'],
         "capacidad" => $_POST['capacidad']
         //y falta la imagen
