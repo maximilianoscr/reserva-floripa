@@ -35,9 +35,9 @@ $select_clientes.= '</select>';
             <option value="">Por favor, cargar ingreso y egreso</option>
           </select>
           <label for="total">Valor total</label>
-          <input type="number" class="form-control" id="total" name="total" required>
+          <input type="text" class="form-control" id="total" name="total" required>
           <label for="parcial">Pago</label>
-          <input type="number" class="form-control" id="parcial" name="parcial" required>
+          <input type="text" class="form-control" id="parcial" name="parcial" required>
           <label for="obs">Observacion</label>
           <input type="text" class="form-control" id="obs" name="obs" required>
         </div>

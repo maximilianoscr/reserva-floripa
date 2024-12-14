@@ -19,16 +19,18 @@
                                             descripcion,
                                             ubi,
                                             capacidad,
-                                            color) 
-                            VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                                            color,
+                                            precio1) 
+                            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $query = $conexion->prepare($sql);
-            $query->bind_param('sssissss', $data['titulo'],
+            $query->bind_param('sssisssss', $data['titulo'],
                                         $data['direccion'],
                                         $data['altura'],
                                         $data['habitaciones'],
                                         $data['descripcion'],
                                         $data['ubi'],
                                         $data['capacidad'],
+                                        $data['precio1'],
                                         $data['color']);
             return $query->execute();
         }
@@ -111,8 +113,9 @@
                                             descripcion = ?,
                                             ubi = ?,
                                             capacidad = ?,
-                                            precio1 = ?,
-                                            color = ?
+                                            color = ?,
+                                            precio1 = ?
+                                            
                     WHERE id = ?";//revisar falta AGREGAR IMAGEEEN
             $query = $conexion->prepare($sql);
             $query->bind_param('sssssssssi', $data['titulo'],

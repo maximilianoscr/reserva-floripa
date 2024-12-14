@@ -21,9 +21,9 @@
           <label for="fecha_finu">Fecha fin</label>
           <input type="date" class="form-control" id="fecha_finu" name="fecha_finu" required>
           <label for="totalu">Valor total</label>
-          <input type="number" class="form-control" id="totalu" name="totalu" required>
+          <input type="text" class="form-control" id="totalu" name="totalu" required>
           <label for="parcialu">Pago</label>
-          <input type="number" class="form-control" id="parcialu" name="parcialu" required>
+          <input type="text" class="form-control" id="parcialu" name="parcialu" required>
           <label for="obsu">Observacion</label>
           <input type="text" class="form-control" id="obsu" name="obsu" required>
       </div>
