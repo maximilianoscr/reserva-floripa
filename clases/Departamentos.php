@@ -15,7 +15,7 @@
             $sql = "INSERT INTO t_habitaciones (titulo,
                                             direccion,
                                             altura,
-                                            tipo_habitacion,
+                                            cantidad_habitacion,
                                             descripcion,
                                             ubi,
                                             capacidad,
@@ -25,7 +25,7 @@
             $query->bind_param('sssissss', $data['titulo'],
                                         $data['direccion'],
                                         $data['altura'],
-                                        $data['tipo_habitacion'],
+                                        $data['habitaciones'],
                                         $data['descripcion'],
                                         $data['ubi'],
                                         $data['capacidad'],
@@ -107,21 +107,23 @@
             $sql = "UPDATE t_habitaciones SET titulo = ?,
                                             direccion = ?,
                                             altura = ?,
-                                            tipo_habitacion = ?,
+                                            cantidad_habitacion = ?,
                                             descripcion = ?,
                                             ubi = ?,
                                             capacidad = ?,
+                                            precio1 = ?,
                                             color = ?
                     WHERE id = ?";//revisar falta AGREGAR IMAGEEEN
             $query = $conexion->prepare($sql);
-            $query->bind_param('ssssssssi', $data['titulo'],
+            $query->bind_param('sssssssssi', $data['titulo'],
                                         $data['direccion'],
                                         $data['altura'],
-                                        $data['tipo_habitacion'],
+                                        $data['habitaciones'],
                                         $data['descripcion'],
                                         $data['ubi'],
                                         $data['capacidad'],
                                         $data['color'],
+                                        $data['precio1'],
                                         $data['id']);
             return $query->execute();
         }

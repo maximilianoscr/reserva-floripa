@@ -134,7 +134,7 @@ function actualizarDepartamentosDisponibles() {
                             const seleccionado = depto.id == deptoOriginal ? 'selected' : '';
                             if (seleccionado) deptoDisponible = true;
                             $('#id_deptou').append(
-                                `<option value="${depto.id}" ${seleccionado}>${depto.titulo}</option>`
+                                `<option value="${depto.id}|${depto.precio1}" ${seleccionado}>${depto.titulo}</option>`
                             );
                         });
 
@@ -191,7 +191,8 @@ function cargarDepartamentos() {
 
     if (fechaIngreso && fechaEgreso) {
         selector.append('<option value="">Cargando departamentos...</option>');
-
+        selector.empty(); 
+        
         $.ajax({
             url: '../servidor/reservas/obtener_departamentos.php',
             method: 'POST',
@@ -200,11 +201,11 @@ function cargarDepartamentos() {
             success: function(response) {        
             
                 let selector = $('#id_depto');
-                selector.empty(); 
-            
+                //selector.empty(); 
+                selector.append('<option value="">Selecciona un departamento...</option>');
                 if (Array.isArray(response) && response.length > 0) {
                     response.forEach(function(depto) {
-                        selector.append(`<option value="${depto.id}">${depto.titulo}</option>`);
+                        selector.append(`<option value="${depto.id}|${depto.precio1}">${depto.titulo}</option>`);
                     });
                 } else {
                     console.error('La respuesta no es un array válido');
@@ -220,3 +221,41 @@ function cargarDepartamentos() {
         selector.append('<option value="">Por favor cargar ingreso y egreso</option>');
     }
 }
+function calcularPrecio() {
+    $('#id_depto').on('change', function () {
+        const seleccion = $(this).val(); // Obtén el valor del selector
+        const fechaInicio = $('#fecha_inicio').val(); // Fecha de inicio
+        const fechaFin = $('#fecha_fin').val(); // Fecha de fin
+
+        if (seleccion && fechaInicio && fechaFin) { 
+            // Solo si hay un valor válido en el selector y ambas fechas están completas
+            const [idDepto, precioPorDia] = seleccion.split('|');
+            const dias = calcularDias(fechaInicio, fechaFin);
+
+            if (dias > 0) {
+                const total = dias * parseFloat(precioPorDia);
+                $('#total').val(total.toFixed(2)); // Actualiza el input total
+            } else {
+                alert('Las fechas deben formar un rango válido.');
+            }
+        }
+    });
+}
+
+// Función para calcular los días entre dos fechas
+function calcularDias(fechaInicio, fechaFin) {
+    const inicio = new Date(fechaInicio);
+    const fin = new Date(fechaFin);
+
+    if (inicio > fin) {
+        return 0; // Si la fecha de inicio es posterior a la de fin, devuelve 0
+    }
+
+    const diff = Math.abs(fin - inicio); // Diferencia en milisegundos
+    return Math.ceil(diff / (1000 * 60 * 60 * 24)); // Convertir a días
+}
+
+// Ejecuta el código al cargar el DOM
+$(document).ready(function () {
+    calcularPrecio();
+});

@@ -77,10 +77,11 @@ function editarDepartamento(id_departamento){
             $('#titulou').val(respuesta[0].titulo);
             $('#direccionu').val(respuesta[0].direccion);
             $('#alturau').val(respuesta[0].altura);
-            $('#tipo_habitacionu').val(respuesta[0].tipo_habitacion);
+            $('#habitacionesu').val(respuesta[0].cantidad_habitacion);
             $('#descripcionu').val(respuesta[0].descripcion);
             $('#x_mapau').val(respuesta[0].ubi);
             $('#capacidadu').val(respuesta[0].capacidad);
+            $('#preciou').val(parseFloat(respuesta[0].precio1).toFixed(2));
             $('#coloru').val(respuesta[0].color);
         }
     });

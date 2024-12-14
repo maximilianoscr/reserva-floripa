@@ -19,18 +19,16 @@
             <input type="text" class="form-control" id="direccionu" name="direccionu" required>
             <label for="alturau">Altura</label>
             <input type="text" class="form-control" id="alturau" name="alturau" required>
-            <label for="tipo_habitacionu">Tipo de habitacion</label>
-            <select class="form-select" id="tipo_habitacionu" name='tipo_habitacionu'><!-- ESTO TENGO QUE CAMBIAR -->
-                <option value="1">Sencilla</option>
-                <option value="2">Doble</option>
-                <option value="3">Suite</option>
-            </select>
+            <label for="habitacionesu">Cantidad habitaciones</label>
+            <input type="number" class="form-control" id="habitacionesu" name="habitacionesu" required>
             <label for="descripcionu">Descripcion</label>
             <input type="text" class="form-control" id="descripcionu" name="descripcionu" required>
             <label for="x_mapau">Ubicacion</label>
             <input type="text" class="form-control" id="x_mapau" name="x_mapau" >
             <label for="capacidadu">Capacidad en personas</label>
             <input type="number" class="form-control" id="capacidadu" name="capacidadu" required>
+            <label for="preciou">Precio por d&iacute;a</label>
+            <input type="text" class="form-control" id="preciou" name="preciou" required>
             <label for="coloru">Color</label>
             <input type="color" class="form-control form-control-color" id="coloru" name="coloru" value="#ff0000">
         </div>
