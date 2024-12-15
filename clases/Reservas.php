@@ -1,26 +1,27 @@
 <?php
     include "Conexion.php";
 
-    class Reservas extends Conexion {
-        public function mostrarReservas($id_usuario) {
-            $conexion = Conexion::conectar();
-
-            $sql = "SELECT a.id_reserva,a.id_usuario, a.titulo,DATE(a.fecha_inicio) as fecha_inicio,DATE(a.fecha_fin) AS fecha_fin,a.fecha_carga,
+    class Reservas extends Interacciones {
+        public function mostrarReservas($id_usuario, $fecha) {//revisar fecha
+            $consultado = "a.id_reserva,a.id_usuario, a.titulo,DATE(a.fecha_inicio) as fecha_inicio,DATE(a.fecha_fin) AS fecha_fin,a.fecha_carga,
                         h.titulo AS depto, h.id AS id_departamento,CONCAT(h.direccion,'.Nro° ',h.altura) AS direccion, h.capacidad,h.color,
                         u.id_usuario,
                         c.id_cliente, CONCAT(c.apellido,', ',c.nombre) as cliente
                     FROM t_reservas a 
                     INNER JOIN t_habitaciones h ON h.id=a.id_depto
                     INNER JOIN t_usuarios u ON u.id_usuario=a.id_usuario
-                    INNER JOIN t_clientes c ON c.id_cliente=a.id_cliente ";
+                    INNER JOIN t_clientes c ON c.id_cliente=a.id_cliente";
+            if ($fecha != "") {
+                return Interacciones::consultar("t_reservas",$consultado);
                 // WHERE id_usuario = '$id_usuario' AND fecha_inicio LIKE '%". $fecha ."%'";
-            $respuesta = mysqli_query($conexion, $sql);
-            return mysqli_fetch_all($respuesta, MYSQLI_ASSOC);
+            } else {
+                return Interacciones::consultar("t_reservas",$consultado);
+                // WHERE id_usuario = '$id_usuario'";
+            }
         }
 
         public function editarReserva($id_reserva) {
-            $conexion = Conexion::conectar();
-            $sql = "SELECT a.id_reserva,
+            $consultado = "a.id_reserva,
                             a.titulo,
                             a.valor_total,
                             a.pago_parcial,
@@ -32,14 +33,12 @@
                             CONCAT(c.apellido,', ', c.nombre) as cliente 
                         FROM t_reservas a 
                         INNER JOIN t_habitaciones b ON a.id_depto=b.id 
-                        INNER JOIN t_clientes c ON a.id_cliente=c.id_cliente 
-                WHERE a.id_reserva = '$id_reserva'";
-            $respuesta = mysqli_query($conexion, $sql);
-            return json_encode(mysqli_fetch_all($respuesta, MYSQLI_ASSOC));
+                        INNER JOIN t_clientes c ON a.id_cliente=c.id_cliente";
+            return Interacciones::consultar("t_reservas", $consultado, "id_reserva = '$id_reserva'");
         }
 
         public function agregar($data) {
-            $conexion = Conexion::conectar();
+            $conexion = Interacciones::conectar();
             $sql = "INSERT INTO t_reservas (id_usuario,
                                 id_cliente,
                                 id_depto,
@@ -66,7 +65,7 @@
         }
 
         public function eliminarReserva($id_reserva) {
-            $conexion = Conexion::conectar();
+            $conexion = Interacciones::conectar();
             $sql = "DELETE FROM t_reservas WHERE id_reserva = ?";
             $query = $conexion->prepare($sql);
             $query->bind_param('i', $id_reserva);
