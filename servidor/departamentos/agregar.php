@@ -6,11 +6,11 @@
         "titulo" => $_POST['titulo'],
         "direccion" => $_POST['direccion'],
         "altura" => $_POST['altura'],
-        "tipo_habitacion" => $_POST['tipo_habitacion'],
+        "cantidad_habitacion" => $_POST['habitaciones'],
         "descripcion" => $_POST['descripcion'],
-        "x_mapa" => $_POST['x_mapa'],
-        "y_mapa" => $_POST['y_mapa'],
+        "ubi" => $_POST['x_mapa'],
         "color" => $_POST['color'],
+        "precio1" => $_POST['precio'],
         "capacidad" => $_POST['capacidad']
         //y falta la imagen
     );

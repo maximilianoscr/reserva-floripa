@@ -7,12 +7,12 @@
 <table class="table table-sm table-hover" id="tabla_clientes_load">
     <thead>
         <tr>
-            <th>IDCliente</th>
             <th>Apellido, nombres</th>
             <th>Direccion</th>
             <th>Telefono</th>
             <th>Correo</th>
             <th>Fecha de Nacimiento</th>
+            <th>Ver</th>
             <th>Editar</th>
             <th>Eliminar</th>
         </tr>
@@ -20,12 +20,16 @@
     <tbody>
         <?php foreach ($items as $key):?>
         <tr>
-            <td><?php echo $key['id_cliente'] ?></td>
             <td><?php echo $key['apellido'].", ".$key['nombre'] ?></td>
             <td><?php echo $key['direccion'] ?></td>
             <td><?php echo $key['tel'] ?></td>
             <td><?php echo $key['correo'] ?></td>
             <td><?php echo $key['fechaNac'] ?></td>
+            <td>
+            <span class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modal_editar_cliente" onclick="editarCliente('15')">
+                <i class="fa-solid fa-eye"></i>
+            </span>
+            </td>
             <td>
                 <span class="btn btn-warning" data-bs-toggle="modal" 
                 data-bs-target="#modal_editar_cliente" 
