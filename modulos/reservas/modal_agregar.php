@@ -43,7 +43,7 @@ $select_clientes.= '</select>';
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button class="btn btn-warning">Cargar</button>
+          <button id='cargar' type='submit' class="btn btn-warning">Cargar</button>
         </div>
       </div>
     </div>

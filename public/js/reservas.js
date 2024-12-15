@@ -11,29 +11,32 @@ function buscarPorFecha() {
    $('#fecha_inicio, #fecha_fin').on('change', cargarDepartamentos);
 
 function agregarReserva(){
-
-    $.ajax({
-        type:"POST",
-        data:$('#frmAgregarReserva').serialize(),
-        url:"../servidor/reservas/agregar.php",
-        success:function(respuesta) {
-            if (respuesta == 1) {
-                $('#tablaReservas').load('reservas/tabla_reservas.php');
-                $('#frmAgregarReserva')[0].reset();
-                Swal.fire({
-                    title: 'Exito!',
-                    text: 'Agregado',
-                    icon: 'success'
-                })
-            } else {
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'Fallo con ' + respuesta,
-                    icon: 'error'
-                })
+    if (validarSeleccionCliente()) {
+        $.ajax({
+            type:"POST",
+            data:$('#frmAgregarReserva').serialize(),
+            url:"../servidor/reservas/agregar.php",
+            success:function(respuesta) {
+                if (respuesta == 1) {
+                    $('#tablaReservas').load('reservas/tabla_reservas.php');
+                    $('#frmAgregarReserva')[0].reset();
+                    Swal.fire({
+                        title: 'Exito!',
+                        text: 'Agregado',
+                        icon: 'success'
+                    })
+                } else {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Fallo con ' + respuesta,
+                        icon: 'error'
+                    })
+                }
             }
-        }
-    });
+        });
+    }else{
+        return false;
+    }
 
     return false;
 }
@@ -202,8 +205,8 @@ function cargarDepartamentos() {
             
                 let selector = $('#id_depto');
                 //selector.empty(); 
-                selector.append('<option value="">Selecciona un departamento...</option>');
                 if (Array.isArray(response) && response.length > 0) {
+                    selector.append('<option value="">Selecciona un departamento...</option>');
                     response.forEach(function(depto) {
                         selector.append(`<option value="${depto.id}|${depto.precio1}">${depto.titulo}</option>`);
                     });
@@ -223,18 +226,17 @@ function cargarDepartamentos() {
 }
 function calcularPrecio() {
     $('#id_depto').on('change', function () {
-        const seleccion = $(this).val(); // Obtén el valor del selector
-        const fechaInicio = $('#fecha_inicio').val(); // Fecha de inicio
-        const fechaFin = $('#fecha_fin').val(); // Fecha de fin
-
+        const seleccion = $(this).val();
+        const fechaInicio = $('#fecha_inicio').val(); 
+        const fechaFin = $('#fecha_fin').val(); 
         if (seleccion && fechaInicio && fechaFin) { 
-            // Solo si hay un valor válido en el selector y ambas fechas están completas
+          
             const [idDepto, precioPorDia] = seleccion.split('|');
             const dias = calcularDias(fechaInicio, fechaFin);
 
             if (dias > 0) {
                 const total = dias * parseFloat(precioPorDia);
-                $('#total').val(total.toFixed(2)); // Actualiza el input total
+                $('#total').val(total.toFixed(2)); 
             } else {
                 alert('Las fechas deben formar un rango válido.');
             }
@@ -242,20 +244,34 @@ function calcularPrecio() {
     });
 }
 
-// Función para calcular los días entre dos fechas
+
 function calcularDias(fechaInicio, fechaFin) {
     const inicio = new Date(fechaInicio);
     const fin = new Date(fechaFin);
 
     if (inicio > fin) {
-        return 0; // Si la fecha de inicio es posterior a la de fin, devuelve 0
+        return 0;
     }
 
-    const diff = Math.abs(fin - inicio); // Diferencia en milisegundos
-    return Math.ceil(diff / (1000 * 60 * 60 * 24)); // Convertir a días
+    const diff = Math.abs(fin - inicio); 
+    return Math.ceil(diff / (1000 * 60 * 60 * 24)); 
 }
 
-// Ejecuta el código al cargar el DOM
 $(document).ready(function () {
     calcularPrecio();
 });
+function validarSeleccionCliente() {
+    const select = document.getElementById('id_cliente');
+    const selectedValue = parseInt(select.value, 10);
+  
+    if (selectedValue > 0) {
+      return true; 
+    } else {
+        const option = select.querySelector('option[value="-1"]');
+        if (option) {
+          option.textContent = "Selecciona un cliente válido"; // Modifica el texto de la opción existente
+        }
+      select.style.border = "2px solid red"; 
+      return false; 
+    }
+}
