@@ -1,50 +1,24 @@
 <?php
     include "Conexion.php";
 
-    class Reservas extends Conexion {
+    class Reservas extends Interacciones {
         public function mostrarReservas($id_usuario, $fecha) {//revisar fecha
-            $conexion = Conexion::conectar();
+            
             if ($fecha != "") {
-                $sql = "SELECT id_reserva,
-                            id_usuario,
-                            titulo,
-                            fecha_inicio AS fecha_inicio, 
-                            fecha_fin AS fecha_fin,
-                            fecha_carga AS fecha_carga
-                    FROM 
-                        t_reservas ";
-                   // WHERE id_usuario = '$id_usuario' AND fecha_inicio LIKE '%". $fecha ."%'";
+                return Interacciones::consultar("t_reservas","id_reserva, id_usuario, titulo, fecha_inicio, fecha_fin , fecha_carga");
+                // WHERE id_usuario = '$id_usuario' AND fecha_inicio LIKE '%". $fecha ."%'";
             } else {
-                $sql = "SELECT id_reserva,
-                            id_usuario,
-                            titulo,
-                            fecha_inicio AS fecha_inicio, 
-                            fecha_fin AS fecha_fin,
-                            fecha_carga AS fecha
-                    FROM 
-                        t_reservas ";
-                   // WHERE id_usuario = '$id_usuario'";
+                return Interacciones::consultar("t_reservas","id_reserva, id_usuario, titulo, fecha_inicio, fecha_fin , fecha_carga");
+                // WHERE id_usuario = '$id_usuario'";
             }
-            $respuesta = mysqli_query($conexion, $sql);
-            return mysqli_fetch_all($respuesta, MYSQLI_ASSOC);
         }
 
         public function editarReserva($id_reserva) {
-            $conexion = Conexion::conectar();
-            $sql = "SELECT id_reserva,
-                            observacion,
-                            fecha_inicio AS fecha_inicio, 
-                            fecha_fin AS fecha_fin,
-                            fecha_carga
-                    FROM 
-                        t_reservas 
-                    WHERE id_reserva = '$id_evento'";
-            $respuesta = mysqli_query($conexion, $sql);
-            return mysqli_fetch_all($respuesta, MYSQLI_ASSOC);
+            return Interacciones::consultar("t_reservas", "id_reserva, observacion, fecha_inicio, fecha_fin, fecha_carga", "id_reserva = '$id_reserva'");
         }
 
         public function agregar($data) {
-            $conexion = Conexion::conectar();
+            $conexion = Interacciones::conectar();
             $sql = "INSERT INTO t_reservas (id_usuario,
                                             titulo,
                                             fecha_inicio,
@@ -61,7 +35,7 @@
         }
 
         public function eliminarReserva($id_reserva) {
-            $conexion = Conexion::conectar();
+            $conexion = Interacciones::conectar();
             $sql = "DELETE FROM t_reservas WHERE id_reserva = ?";
             $query = $conexion->prepare($sql);
             $query->bind_param('i', $id_reserva);
@@ -69,7 +43,7 @@
         }
 
         public function actualizarReserva($data) {
-            $conexion = Conexion::conectar();
+            $conexion = Interacciones::conectar();
             $sql = "UPDATE t_reservas SET id_usuario = ?,
                                         cliente = ?,
                                         fecha_inicio = ?,
@@ -87,7 +61,7 @@
         }
 /*
         public function mostrarInvitadosEvento($id_evento) {//FUNCION RARA REVISAR
-            $conexion = Conexion::conectar();
+            $conexion = Interacciones::conectar();
             $sql = "SELECT * FROM v_invitados 
                     WHERE idEvento = '$id_evento'";//DEBE SER DE LA VISTA
             $respuesta = mysqli_query($conexion, $sql);
@@ -95,7 +69,7 @@
         }
 
         public function hayInvitados($id_evento) {
-            $conexion = Conexion::conectar();
+            $conexion = Interacciones::conectar();
             $sql = "SELECT 
                         COUNT(*) as total
                     FROM
@@ -108,7 +82,7 @@
         }*/
 
         public function fullCalendar($id_usuario) {
-            $conexion = Conexion::conectar();
+            $conexion = Interacciones::conectar();
             $sql = "SELECT 
                         id_reserva AS id,
                         titulo AS title,
