@@ -77,7 +77,7 @@ class Interacciones extends Conexion {
         $fields = rtrim($fields, ", ");
         
         $sql = "UPDATE $table SET $fields WHERE $where";
-        parent::logStdout($sql);
+
         $stmt = $this->getConexion()->prepare($sql);
         
         foreach ($data as $key => $val) {
@@ -94,7 +94,7 @@ class Interacciones extends Conexion {
 
     public function delete($table, $where): bool {
         $sql = "DELETE FROM $table WHERE $where";
-        parent::logStdout($sql);
+        
         $stmt = $this->getConexion()->prepare($sql);
         
         if ($stmt->execute()) {
