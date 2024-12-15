@@ -2,21 +2,19 @@
     include "Conexion.php";
 
     class Reservas extends Interacciones {
-        public function mostrarReservas($id_usuario, $fecha) {//revisar fecha
-            $consultado = "a.id_reserva,a.id_usuario, a.titulo,DATE(a.fecha_inicio) as fecha_inicio,DATE(a.fecha_fin) AS fecha_fin,a.fecha_carga,
+        public function mostrarReservas($id_usuario, $filtro=null) {
+            $solicitado = "a.id_reserva,a.id_usuario, a.titulo,DATE(a.fecha_inicio) as fecha_inicio,DATE(a.fecha_fin) AS fecha_fin,a.fecha_carga,
                         h.titulo AS depto, h.id AS id_departamento,CONCAT(h.direccion,'.Nro° ',h.altura) AS direccion, h.capacidad,h.color,
                         u.id_usuario,
-                        c.id_cliente, CONCAT(c.apellido,', ',c.nombre) as cliente
-                    FROM t_reservas a 
-                    INNER JOIN t_habitaciones h ON h.id=a.id_depto
-                    INNER JOIN t_usuarios u ON u.id_usuario=a.id_usuario
-                    INNER JOIN t_clientes c ON c.id_cliente=a.id_cliente";
-            if ($fecha != "") {
-                return Interacciones::consultar("t_reservas",$consultado);
-                // WHERE id_usuario = '$id_usuario' AND fecha_inicio LIKE '%". $fecha ."%'";
+                        c.id_cliente, CONCAT(c.apellido,', ',c.nombre) as cliente";
+            $tabla="t_reservas a 
+            INNER JOIN t_habitaciones h ON h.id=a.id_depto
+            INNER JOIN t_usuarios u ON u.id_usuario=a.id_usuario
+            INNER JOIN t_clientes c ON c.id_cliente=a.id_cliente";
+            if ($filtro != "") {
+                return Interacciones::consultar($tabla,$solicitado,$filtro);
             } else {
-                return Interacciones::consultar("t_reservas",$consultado);
-                // WHERE id_usuario = '$id_usuario'";
+                return Interacciones::consultar($tabla,$solicitado);
             }
         }
 
@@ -34,96 +32,64 @@
                         FROM t_reservas a 
                         INNER JOIN t_habitaciones b ON a.id_depto=b.id 
                         INNER JOIN t_clientes c ON a.id_cliente=c.id_cliente";
-            return Interacciones::consultar("t_reservas", $consultado, "id_reserva = '$id_reserva'");
+            return Interacciones::consultar("t_reservas", $consultado, "id_reserva =$id_reserva");
         }
 
         public function agregar($data) {
-            $conexion = Interacciones::conectar();
-            $sql = "INSERT INTO t_reservas (id_usuario,
-                                id_cliente,
-                                id_depto,
-                                titulo,
-                                fecha_inicio,
-                                fecha_fin,
-                                fecha_carga,
-                                valor_total,
-                                pago_parcial,
-                                observacion) 
-                    VALUES (?, ?, ?, ?, CONCAT(?, ' 14:00:00'), CONCAT(?, ' 10:00:00'), NOW(), ?, ?, ?)";
 
-            $query = $conexion->prepare($sql);
-            $query->bind_param('iiisssiis', $data['id_usuario'],
-                                        $data['id_cliente'],
-                                        $data['id_depto'],
-                                        $data['titulo'],
-                                        $data['fecha_inicio'],
-                                        $data['fecha_fin'],
-                                        $data['valor_total'],
-                                        $data['pago_parcial'],
-                                        $data['obs']);
-            return $query->execute();
+            $data= [  'id_usuario' => $data['id_usuario'],
+                      'id_cliente' => $data['id_cliente'],
+                        'id_depto' => $data['id_depto'],
+                          'titulo' => $data['titulo'],
+                    'fecha_inicio' => $data['fecha_inicio'].' 14:00:00',
+                       'fecha_fin' => $data['fecha_fin'].' 10:00:00',
+                     'fecha_carga' => 'NOW ()',
+                     'valor_total' => $data['valor_total'],
+                    'pago_parcial' => $data['pago_parcial'],
+                     'observacion' => $data['obs']
+                                ];
+            return Interacciones::insert("t_reservas", $data);
+
         }
 
         public function eliminarReserva($id_reserva) {
-            $conexion = Interacciones::conectar();
-            $sql = "DELETE FROM t_reservas WHERE id_reserva = ?";
-            $query = $conexion->prepare($sql);
-            $query->bind_param('i', $id_reserva);
-            return $query->execute();
+ 
+            return Interacciones::delete("t_reservas","id_reserva=".$id_reserva);
+
         }
 
         public function actualizarReserva($data) {
-            $conexion = Conexion::conectar();
 
-            $fecha_inicio = $data['fecha_inicio'] . ' 14:00:00';
-            $fecha_fin = $data['fecha_fin'] . ' 10:00:00';
+            $datos=[ 'id_usuario'   => $data['id_usuario'],
+                           'titulo' => $data['titulo'],
+                  'fecha_inicio'    => $data['fecha_inicio']. ' 14:00:00',
+                        'fecha_fin' => $data['fecha_fin']. ' 10:00:00',
+                     'fecha_carga'  => 'NOW ()',
+                      'valor_total' => $data['total'],
+                    'pago_parcial'  => $data['parcial'],
+                     'observacion'  => $data['obs']];
 
-            $sql = "UPDATE t_reservas SET id_usuario = ?,
-                                    titulo = ?,
-                                    fecha_inicio = ?,
-                                    fecha_fin = ?,
-                                    fecha_carga = NOW(),
-                                    valor_total = ?,
-                                    pago_parcial = ?,
-                                    observacion = ?
-                    WHERE id_reserva = ?";
+            return Interacciones::update("t_reservas",$datos,"id_reserva=".$data['id_reserva']);
 
-            $query = $conexion->prepare($sql);
-            $query->bind_param('isssiisi', $data['id_usuario'], 
-                                    $data['titulo'],
-                                    $fecha_inicio, // Fecha con hora específica
-                                    $fecha_fin,    // Fecha con hora específica
-                                    $data['total'],
-                                    $data['parcial'],
-                                    $data['obs'],
-                                    $data['id_reserva']);
-            return $query->execute();
         }
 
         public function fullCalendar($id_usuario) {
-            $conexion = Conexion::conectar();
 
-
-            $sql="SELECT a.id_reserva as id, a.titulo as title,
+            $solicitado='a.id_reserva as id, a.titulo as title,
                 a.fecha_inicio as start,
                 a.fecha_fin as end,
-                h.color AS backgroundColor
-                FROM t_reservas a 
-                INNER JOIN t_habitaciones h ON h.id=a.id_depto
-                WHERE a.id_usuario = '$id_usuario'";
+                h.color AS backgroundColor';
+            $tabla='t_reservas a 
+                INNER JOIN t_habitaciones h ON h.id=a.id_depto';
+            $filtro="a.id_usuario =$id_usuario";
 
-            $respuesta = mysqli_query($conexion, $sql);
-            $reservas = mysqli_fetch_all($respuesta, MYSQLI_ASSOC);
-            //echo "<pre>";            print_r($reservas);
-            return json_encode($reservas);
-            
+            return json_encode(Interacciones::consultar($tabla, $solicitado, $filtro));
         }
 
         public function retornarDisponibles($ingreso,$egreso){
-            $conexion = Conexion::conectar();
 
-            $sql = "SELECT h.*
-                FROM t_habitaciones h
+            $solicitado='h.*';
+            $tabla=" t_habitaciones h
                 LEFT JOIN t_reservas r 
                     ON h.id = r.id_depto
                     AND r.baja IS NULL
@@ -132,12 +98,11 @@
                         (r.fecha_fin BETWEEN '$ingreso 14:00:00' AND '$egreso 10:00:00') OR
                         ('$ingreso 14:00:00' BETWEEN r.fecha_inicio AND r.fecha_fin) OR
                         ('$egreso 10:00:00' BETWEEN r.fecha_inicio AND r.fecha_fin)
-                    )
-                WHERE h.baja IS NULL
-                AND r.id_reserva IS NULL";
-            $respuesta = mysqli_query($conexion, $sql);
-            $Deptosdisponibles = mysqli_fetch_all($respuesta, MYSQLI_ASSOC);
+                    )";
+            $filtro=" h.baja IS NULL
+            AND r.id_reserva IS NULL";
 
-            return json_encode($Deptosdisponibles);     
+            return json_encode(Interacciones::consultar($tabla, $solicitado, $filtro));
+
         }
     }

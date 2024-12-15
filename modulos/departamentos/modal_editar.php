@@ -1,7 +1,3 @@
-<?php  
-  $selecte = $Departamentos->selectReservasEditar($_SESSION['id_usuario']);
-?>
-
 <form id="frmEditarDepartamento" onsubmit="return actualizarDepartamento()">
   <!-- Modal -->
   <div class="modal fade" id="modal_editar_departamento" tabindex="-1" aria-labelledby="modal_editar_departamentoLabel" aria-hidden="true">

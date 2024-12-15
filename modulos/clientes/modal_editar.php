@@ -1,6 +1,3 @@
-<?php  
- // $selecte = $Clientes->selectReservasEditar($_SESSION['id_cliente']);
-?>
 
 <form id="frmEditarCliente" onsubmit="return actualizarCliente()">
   <!-- Modal -->
