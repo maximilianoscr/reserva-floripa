@@ -40,9 +40,10 @@ class Conexion {
 
 class Interacciones extends Conexion {
 
-    public function consultar($tabla, $consulto, $condicion)
+    public function consultar($tabla, $consulto, $condicion = false)
     {
-        $sql = "SELECT $consulto FROM $tabla WHERE $condicion";
+        $sql = "SELECT $consulto FROM $tabla";
+        if($condicion !== false) $sql .= " WHERE $condicion";
         $stmt = $this->getConexion()->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
