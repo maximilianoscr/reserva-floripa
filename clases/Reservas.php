@@ -33,7 +33,7 @@
                         INNER JOIN t_habitaciones b ON a.id_depto=b.id 
                         INNER JOIN t_clientes c ON a.id_cliente=c.id_cliente';
             $filtro="id_reserva =$id_reserva";
-            return json_decode(Interacciones::consultar($tabla, $consultado,$filtro));
+            return json_encode(Interacciones::consultar($tabla, $consultado,$filtro));
         }
 
         public function agregar($data) {
