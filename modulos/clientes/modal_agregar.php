@@ -26,7 +26,7 @@
             <label for="correo">Correo</label>
             <input type="correo" class="form-control" id="correo" name="correo" required>
             <label for="fechaNac">Fecha de nacimiento</label>
-            <input type="date" class="form-control" id="fechaNac" name="fechaNac" required>
+            <input type="date" class="form-control" id="fechaNac" name="fechaNac">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
