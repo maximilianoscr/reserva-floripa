@@ -28,11 +28,12 @@
                             DATE(a.fecha_fin) AS fecha_fin,
                             b.titulo as depto,
                             b.id as id_depto,
-                            CONCAT(c.apellido,', ', c.nombre) as cliente 
-                        FROM t_reservas a 
+                            CONCAT(c.apellido,', ', c.nombre) as cliente ";
+            $tabla='t_reservas a 
                         INNER JOIN t_habitaciones b ON a.id_depto=b.id 
-                        INNER JOIN t_clientes c ON a.id_cliente=c.id_cliente";
-            return Interacciones::consultar("t_reservas", $consultado, "id_reserva =$id_reserva");
+                        INNER JOIN t_clientes c ON a.id_cliente=c.id_cliente';
+            $filtro="id_reserva =$id_reserva";
+            return json_decode(Interacciones::consultar($tabla, $consultado,$filtro));
         }
 
         public function agregar($data) {
