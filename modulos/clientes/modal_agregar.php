@@ -16,15 +16,15 @@
             <label for="nombre">Nombre</label>
             <input type="text" class="form-control" id="nombre" name="nombre" required>
             <label for="dni">DNI</label>
-            <input type="text" class="form-control" id="dni" name="dni" required>
+            <input type="text" class="form-control" id="dni" name="dni" >
             <label for="direccion">Direccion</label>
-            <input type="text" class="form-control" id="direccion" name="direccion" required>
+            <input type="text" class="form-control" id="direccion" name="direccion" >
             <label for="tel">Telefono</label>
             <input type="text" class="form-control" id="tel" name="tel" required>
             <label for="tel_alt">Telefono Alternativo</label>
-            <input type="text" class="form-control" id="tel_alt" name="tel_alt" required>
+            <input type="text" class="form-control" id="tel_alt" name="tel_alt" >
             <label for="correo">Correo</label>
-            <input type="correo" class="form-control" id="correo" name="correo" required>
+            <input type="correo" class="form-control" id="correo" name="correo" >
             <label for="fechaNac">Fecha de nacimiento</label>
             <input type="date" class="form-control" id="fechaNac" name="fechaNac">
         </div>
