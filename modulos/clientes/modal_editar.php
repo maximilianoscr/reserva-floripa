@@ -1,6 +1,3 @@
-<?php  
- // $selecte = $Clientes->selectReservasEditar($_SESSION['id_cliente']);
-?>
 
 <form id="frmEditarCliente" onsubmit="return actualizarCliente()">
   <!-- Modal -->
@@ -28,7 +25,7 @@
             <label for="correoe">Email</label>
             <input type="email" class="form-control" id="correoe" name="correoe" required>
             <label for="fechaNacu">Fecha de Nacimiento</label>
-            <input type="date" class="form-control" id="fechaNacu" name="fechaNacu" required>
+            <input type="date" class="form-control" id="fechaNacu" name="fechaNacu">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
