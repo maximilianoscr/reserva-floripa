@@ -6,7 +6,7 @@
             if ($this->usuarioExiste($usuario)) {
                 return false;
             }
-            
+            return false;//NO QUIERO QUE SE REGISTRE MAS NADIE
             $data = [
                 'usuario' => $usuario,
                 'password' => $password
