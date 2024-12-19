@@ -8,11 +8,16 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto">
+        <?
+        $src = __FILE__;
+        if($src != "inicio.php"){
+        ?>
         <li class="nav-item">
           <a class="nav-link active colorLetra" aria-current="page" href="inicio.php">
             <i class="fa-solid fa-house-laptop"></i> Inicio
           </a>
         </li>
+        <?}?>
         <li class="nav-item">
           <a class="nav-link active colorLetra" href="reservas.php">
             <i class="fa-solid fa-calendar-days"></i> Reservas
