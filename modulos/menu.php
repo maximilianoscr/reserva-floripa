@@ -12,7 +12,7 @@
         if(!$inicio){
         ?>
         <li class="nav-item">
-          <a class="nav-link active colorLetra" aria-current="page" href="/modulos/">
+          <a class="nav-link active colorLetra" aria-current="page" href="/reserva/modulos/">
             <i class="fa-solid fa-house-laptop"></i> Inicio
           </a>
         </li>
