@@ -20,7 +20,7 @@
         <?}?>
         <li class="nav-item">
           <a class="nav-link active colorLetra" href="reservas.php">
-            <i class="fa-solid fa-calendar-days"></i> Reservas<?echo __FILE__;?>
+            <i class="fa-solid fa-calendar-days"></i> Reservas<?echo __DIR__;?>
           </a>
         </li>
         <li class="nav-item">
