@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light fondoNavbar  static-top">
   <div class="container">
-    <a class="navbar-brand" href="https://www.maxiscr.com/reserva/modulos/inicio.php">
+    <a class="navbar-brand" href="https://www.maxiscr.com/reserva/modulos/">
       <img src="../public/img/logo.png" alt="..." height="40">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,7 +12,7 @@
         if(!$inicio){
         ?>
         <li class="nav-item">
-          <a class="nav-link active colorLetra" aria-current="page" href="inicio.php">
+          <a class="nav-link active colorLetra" aria-current="page" href="/">
             <i class="fa-solid fa-house-laptop"></i> Inicio
           </a>
         </li>
