@@ -9,8 +9,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto">
         <?
-        $src = __FILE__;
-        if($inicio){
+        if(!$inicio){
         ?>
         <li class="nav-item">
           <a class="nav-link active colorLetra" aria-current="page" href="inicio.php">
@@ -20,7 +19,7 @@
         <?}?>
         <li class="nav-item">
           <a class="nav-link active colorLetra" href="reservas.php">
-            <i class="fa-solid fa-calendar-days"></i> Reservas<?if($inicio) echo "....";?>
+            <i class="fa-solid fa-calendar-days"></i> Reservas
           </a>
         </li>
         <li class="nav-item">
