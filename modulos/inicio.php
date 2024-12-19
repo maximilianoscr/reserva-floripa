@@ -1,5 +1,6 @@
 <?php 
   include "header.php";
+  $inicio = true;
   include "menu.php"; 
 ?>
 

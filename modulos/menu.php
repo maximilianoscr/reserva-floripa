@@ -10,7 +10,7 @@
       <ul class="navbar-nav ms-auto">
         <?
         $src = __FILE__;
-        if($src != "inicio.php"){
+        if($inicio){
         ?>
         <li class="nav-item">
           <a class="nav-link active colorLetra" aria-current="page" href="inicio.php">
@@ -20,7 +20,7 @@
         <?}?>
         <li class="nav-item">
           <a class="nav-link active colorLetra" href="reservas.php">
-            <i class="fa-solid fa-calendar-days"></i> Reservas<?echo __DIR__;?>
+            <i class="fa-solid fa-calendar-days"></i> Reservas<?if($inicio) echo "....";?>
           </a>
         </li>
         <li class="nav-item">
