@@ -6,10 +6,10 @@ class Conexion {
 
     public function __construct()
     {
-        $this->servidor = 'localhost'; //testing local
-        $this->usuario = 'root';
-        $this->password = '';
-        $this->database = 'floripa';
+        $this->servidor = 'localhost'; //local
+        $this->usuario = 'c2731026_floripa';
+        $this->password = 'biwo66giPU';
+        $this->database = 'c2731026_floripa';
         $this->port = 3306;
 
         try {
@@ -77,7 +77,7 @@ class Interacciones extends Conexion {
         $fields = rtrim($fields, ", ");
         
         $sql = "UPDATE $table SET $fields WHERE $where";
-        parent::logStdout($sql);
+
         $stmt = $this->getConexion()->prepare($sql);
         
         foreach ($data as $key => $val) {
@@ -94,7 +94,7 @@ class Interacciones extends Conexion {
 
     public function delete($table, $where): bool {
         $sql = "DELETE FROM $table WHERE $where";
-        parent::logStdout($sql);
+        
         $stmt = $this->getConexion()->prepare($sql);
         
         if ($stmt->execute()) {

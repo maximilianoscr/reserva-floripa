@@ -1,7 +1,3 @@
-<?php  
-  $selecte = $Departamentos->selectReservasEditar($_SESSION['id_usuario']);
-?>
-
 <form id="frmEditarDepartamento" onsubmit="return actualizarDepartamento()">
   <!-- Modal -->
   <div class="modal fade" id="modal_editar_departamento" tabindex="-1" aria-labelledby="modal_editar_departamentoLabel" aria-hidden="true">
@@ -16,9 +12,9 @@
             <label for="titulou">Titulo del departamento</label>
             <input type="text" class="form-control" id="titulou" name="titulou" required>
             <label for="direccionu">Direccion</label>
-            <input type="text" class="form-control" id="direccionu" name="direccionu" required>
+            <input type="text" class="form-control" id="direccionu" name="direccionu" >
             <label for="alturau">Altura</label>
-            <input type="text" class="form-control" id="alturau" name="alturau" required>
+            <input type="text" class="form-control" id="alturau" name="alturau" >
             <label for="habitacionesu">Cantidad habitaciones</label>
             <input type="number" class="form-control" id="habitacionesu" name="habitacionesu" required>
             <label for="descripcionu">Descripcion</label>

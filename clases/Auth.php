@@ -6,7 +6,7 @@
             if ($this->usuarioExiste($usuario)) {
                 return false;
             }
-            
+            return false;//NO QUIERO QUE SE REGISTRE MAS NADIE
             $data = [
                 'usuario' => $usuario,
                 'password' => $password
@@ -18,7 +18,7 @@
         public function logear(string $usuario,string $password): bool {
             $password_usuario = "";
             $respuesta = Interacciones::consultar("t_usuarios","*","usuario = '$usuario'");
-            print_r($respuesta);
+            //print_r($respuesta);
             if (count($respuesta) > 0) {
                 foreach($respuesta as $resp){
                     $password_usuario = $resp['password'];
