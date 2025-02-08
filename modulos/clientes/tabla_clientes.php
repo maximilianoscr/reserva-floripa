@@ -26,7 +26,9 @@
             <td><?php echo $key['correo'] ?></td>
             <td><?php echo $key['fechaNac'] ?></td>
             <td>
-            <span class="btn btn-light" data-bs-toggle="modal" data-bs-target="#modal_editar_cliente" onclick="editarCliente('15')">
+            <span class="btn btn-light" data-bs-toggle="modal" 
+                data-bs-target="#modal_ver_cliente" 
+                onclick="verCliente('<?php echo $key['id_cliente'] ?>')">
                 <i class="fa-solid fa-eye"></i>
             </span>
             </td>

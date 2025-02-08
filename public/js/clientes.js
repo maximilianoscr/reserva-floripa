@@ -86,6 +86,28 @@ function editarCliente(id_cliente){
     });
 }
 
+function verCliente(id_cliente){
+    $.ajax({
+        type: "POST",
+        url: "../servidor/clientes/editar.php",
+        data: "id_cliente=" + id_cliente,
+        success : function(respuesta) {
+            respuesta = jQuery.parseJSON( respuesta );
+          // con(respuesta[0].id);
+          //console.log(respuesta);
+          $('#Vid_cliente').val(respuesta[0].id_cliente);
+          $('#Vdni').val(respuesta[0].dni);
+          $('#Vapellido').val(respuesta[0].apellido);
+          $('#Vnombre').val(respuesta[0].nombre);
+          $('#Vdireccion').val(respuesta[0].direccion);
+          $('#Vtel').val(respuesta[0].tel);
+          $('#Vtel_alt').val(respuesta[0].tel_alternativo);
+          $('#Vcorreo').val(respuesta[0].correo);
+          $('#VfechaNacu').val(respuesta[0].fechaNac);
+        }
+    });
+}
+
 
 function actualizarCliente() {
     $.ajax({
