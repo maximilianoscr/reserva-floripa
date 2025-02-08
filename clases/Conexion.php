@@ -8,11 +8,11 @@ class Conexion {
     {
         $this->servidor = 'localhost'; //local
         $this->usuario = 'c2731026_floripa';
-        $this->usuario = 'root';
+        //$this->usuario = 'root';
         $this->password = 'biwo66giPU';
-        $this->password = '';
+        //$this->password = '';
         $this->database = 'c2731026_floripa';
-        $this->database = 'floripa';
+        //$this->database = 'floripa';
         $this->port = 3306;
 
         try {
