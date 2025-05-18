@@ -28,7 +28,7 @@
 
             
             <td>
-                <a class="btn btn-info" href="imprimir.php">
+                <a class="btn btn-info" href="reservas/imprimir.php">
                      <i class="fa-solid fa-print"></i> 
                      <span class="badge bg-secondary"></span>
                 </a>
