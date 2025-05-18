@@ -28,7 +28,7 @@
 
             
             <td>
-                <a class="btn btn-info" onclick="imprimirReserva('<?php echo $key['id_reserva'] ?>')">
+                <a class="btn btn-info" href="imprimir.php">
                      <i class="fa-solid fa-print"></i> 
                      <span class="badge bg-secondary"></span>
                 </a>
