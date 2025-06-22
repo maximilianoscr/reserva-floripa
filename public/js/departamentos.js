@@ -81,7 +81,7 @@ function editarDepartamento(id_departamento){
             $('#descripcionu').val(respuesta[0].descripcion);
             $('#x_mapau').val(respuesta[0].ubi);
             $('#capacidadu').val(respuesta[0].capacidad);
-            $('#preciou').val(parseFloat(respuesta[0].precio1).toFixed(2));
+            $('#preciou').val(parseFloat(respuesta[0].precio).toFixed(2));
             $('#coloru').val(respuesta[0].color);
         }
     });
