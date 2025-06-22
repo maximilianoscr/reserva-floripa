@@ -1,5 +1,5 @@
 <?php session_start(); 
-    include "../../clases/Propietario.php";
+    include "../../clases/Propietarios.php";
     $Propietario = new Propietarios();
     $items = $Propietario->mostrarPropietarios($_SESSION['id_usuario']);
 ?>
