@@ -7,5 +7,3 @@
 # Ignorar el directorio "tmp" en la raíz del proyecto
 /tmp/
 
-# Ignorar un archivo específico en la raíz del proyecto
-/mi_archivo.txt
