@@ -14,8 +14,8 @@
       <div class="card mt-3">
         <div class="card-body">
           <h2>Propietarios</h2>
-          <span class="btn btn-purple" data-bs-toggle="modal" data-bs-target="#modal_agregar_departamento">
-          <i class="fa-solid fa-hotel"></i> Nuevo departamento
+          <span class="btn btn-purple" data-bs-toggle="modal" data-bs-target="#modal_agregar_propietario">
+          <i class="fa-solid fa-hotel"></i> Nuevo propietario
           </span>
           <hr>
           <div id="tablaPropietarios"></div>
