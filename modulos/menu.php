@@ -33,6 +33,12 @@
             <i class="bi bi-person-lines-fill"></i>Clientes
           </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link active colorLetra" href="propietarios.php">
+            <i class="fa-regular fa-address-book"></i>
+            <i class="bi bi-person-lines-fill"></i>Propietarios
+          </a>
+        </li>
         <li class="nav-item dropdown">
           <a style="color:red" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fa-solid fa-circle-user"></i> <?php echo $_SESSION['usuario']; ?>
