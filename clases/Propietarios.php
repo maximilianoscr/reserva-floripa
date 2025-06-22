@@ -9,7 +9,7 @@
 
         }
 
-        public function agregarDepartamento($data) {
+        public function agregarPropietario($data) {
 
             $data = [   "descripcion"    => $data['descripcion'],
                         "correo"     => $data['correo']];
@@ -17,19 +17,19 @@
             return Interacciones::insert("t_propietarios", $data);
         }
 
-        public function eliminarDepartamento($id_departamento) {
+        public function eliminarPropietario($id_propietario) {
 
-            return Interacciones::delete("t_propietarios","id=".$id_departamento);
-
-        }
-
-        public function editarDepartamento($id_departamento) {
-
-            return Interacciones::consultar("t_propietarios","*","id =".$id_departamento);
+            return Interacciones::delete("t_propietarios","id=".$id_propietario);
 
         }
 
-        public function actualizarDepartamento($data){
+        public function editarPropietario($id_propietario) {
+
+            return Interacciones::consultar("t_propietarios","*","id =".$id_propietario);
+
+        }
+
+        public function actualizarPropietario($data){
             
             $datos=[      'descripcion'   => $data['descripcion'],
                           'correo'  => $data['correo']];
