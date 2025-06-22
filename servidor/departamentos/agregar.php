@@ -10,7 +10,7 @@
         "descripcion" => $_POST['descripcion'],
         "ubi" => $_POST['x_mapa'],
         "color" => $_POST['color'],
-        "precio1" => $_POST['precio'],
+        "precio" => $_POST['precio'],
         "capacidad" => $_POST['capacidad']
         //y falta la imagen
     );

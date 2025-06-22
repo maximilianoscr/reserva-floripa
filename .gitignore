@@ -1,0 +1,9 @@
+# Ignorar archivo de conexión
+/clases/Conexion.php
+
+# Ignorar todos los archivos con extensión .log en cualquier parte del proyecto
+*.log
+
+# Ignorar el directorio "tmp" en la raíz del proyecto
+/tmp/
+

@@ -1,0 +1,60 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: url('../img/portada.webp') no-repeat center center fixed;
+  background-size: cover;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+header {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 2rem;
+  width: 100%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+header h1 {
+  margin: 0.5rem 0;
+  font-size: 2.5rem;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.83);
+  border-radius: 16px;
+  margin: 2rem;
+  padding: 2rem;
+  max-width: 800px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.info div {
+  width: 45%;
+  margin: 1rem 0;
+  text-align: left;
+}
+
+.btn-contactar {
+  margin-top: 2rem;
+  padding: 0.75rem 2rem;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.btn-contactar:hover {
+  background: #0056b3;
+}

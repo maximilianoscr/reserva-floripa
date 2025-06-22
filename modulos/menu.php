@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light fondoNavbar  static-top">
   <div class="container">
-    <a class="navbar-brand" href="https://www.maxiscr.com/reserva/modulos/">
+    <a class="navbar-brand" href="https://www.reserva-web.com/reserva/modulos/">
       <img src="../public/img/logo.png" alt="..." height="40">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -31,6 +31,12 @@
           <a class="nav-link active colorLetra" href="clientes.php">
             <i class="fa-regular fa-address-book"></i>
             <i class="bi bi-person-lines-fill"></i>Clientes
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active colorLetra" href="propietarios.php">
+            <i class="fa-regular fa-address-book"></i>
+            <i class="bi bi-person-lines-fill"></i>Propietarios
           </a>
         </li>
         <li class="nav-item dropdown">

@@ -25,7 +25,7 @@
             <td><?php echo $key['descripcion'] ?></td>
             <td><?php echo $key['cantidad_habitacion'] ?></td>
             <td><?php echo $key['capacidad'] ?></td>
-            <td><?php echo number_format($key['precio1'], 2, '.', ''); ?></td>
+            <td><?php echo number_format($key['precio'], 2, '.', ''); ?></td>
             <?php if($key['ubi'] != '' ){ ?>
                 <td><a href="<?php echo "https://www.google.com/maps?q=".$key['ubi']; ?>" target="_blank">Haga click para ver la ubicaci&oacute;n</a></td>
             <?php }else{ ?>

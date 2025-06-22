@@ -1,17 +1,14 @@
 <?php session_start(); 
-    include "../../clases/Clientes.php";
-    $Clientes = new Clientes();
-    $items = $Clientes->mostrarClientes($_SESSION['id_usuario']);
+    include "../../clases/Propietarios.php";
+    $Propietario = new Propietarios();
+    $items = $Propietario->mostrarPropietarios($_SESSION['id_usuario']);
 ?>
 
-<table class="table table-sm table-hover" id="tabla_clientes_load">
+<table class="table table-sm table-hover" id="tabla_propietarios_load">
     <thead>
         <tr>
-            <th>Apellido, nombres</th>
-            <th>Direccion</th>
-            <th>Telefono</th>
+            <th>Apellido y nombres</th>
             <th>Correo</th>
-            <th>Fecha de Nacimiento</th>
             <th>Ver</th>
             <th>Editar</th>
             <th>Eliminar</th>
@@ -20,28 +17,25 @@
     <tbody>
         <?php foreach ($items as $key):?>
         <tr>
-            <td><?php echo $key['apellido'].", ".$key['nombre'] ?></td>
-            <td><?php echo $key['direccion'] ?></td>
-            <td><?php echo $key['tel'] ?></td>
+            <td><?php echo $key['descripcion'] ?></td>
             <td><?php echo $key['correo'] ?></td>
-            <td><?php echo $key['fechaNac'] ?></td>
             <td>
             <span class="btn btn-light" data-bs-toggle="modal" 
-                data-bs-target="#modal_ver_cliente" 
-                onclick="verCliente('<?php echo $key['id_cliente'] ?>')">
+                data-bs-target="#modal_ver_propietario" 
+                onclick="verPropietario('<?php echo $key['id_propietario'] ?>')">
                 <i class="fa-solid fa-eye"></i>
             </span>
             </td>
             <td>
                 <span class="btn btn-warning" data-bs-toggle="modal" 
-                data-bs-target="#modal_editar_cliente" 
-                onclick="editarCliente('<?php echo $key['id_cliente'] ?>')">
+                data-bs-target="#modal_editar_propietario" 
+                onclick="editarPropietario('<?php echo $key['id_propietario'] ?>')">
                     <i class="fa-solid fa-user-pen"></i>
                 </span>
             </td>
             <td>
                 <span class="btn btn-danger" 
-                onclick="eliminarCliente('<?php echo $key['id_cliente'] ?>')">
+                onclick="eliminarPropietario('<?php echo $key['id_propietario'] ?>')">
                     <i class="fa-solid fa-user-xmark"></i>
                 </span>
             </td>
@@ -52,7 +46,7 @@
 
 <script>
     $(document).ready(function(){
-        $('#tabla_clientes_load').DataTable({
+        $('#tabla_propietarios_load').DataTable({
             "language": {
                 "url": "../public/librerias/datatables/Spanish.json"
             }

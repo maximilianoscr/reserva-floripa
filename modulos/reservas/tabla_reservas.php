@@ -13,7 +13,7 @@
             <th>Cliente</th>
             <th>Fecha inicio</th>
             <th>Fecha fin</th>
-            <th>Ver</th>
+            <th>Imprimir</th>
             <th>Editar</th>
             <th>Eliminar</th>
         </tr>
@@ -28,11 +28,9 @@
 
             
             <td>
-                <a href="imprimir_reserva.php?id_reserva=<?php echo $key['id_reserva'] ?>" 
-                    class="btn btn-info" 
-                    target="_blank">
+                <a class="btn btn-info" href="reservas/imprimir.php">
                      <i class="fa-solid fa-print"></i> 
-                     <span class="badge bg-secondary"><?php echo "HOLA MUNDO"; ?></span>
+                     <span class="badge bg-secondary"></span>
                 </a>
             </td>
             

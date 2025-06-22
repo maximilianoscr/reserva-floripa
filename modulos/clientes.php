@@ -29,6 +29,7 @@
   include "footer.php";
   include "clientes/modal_agregar.php";
   include "clientes/modal_editar.php";
+  include "clientes/modal_ver.php";
 ?>
 <script src="../public/js/clientes.js"></script>
     

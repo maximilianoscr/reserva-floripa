@@ -3,25 +3,29 @@ body {
   background: linear-gradient(to right, #d0d03f, #3fd063);
 }
   
-  .card-img-left {
-    width: 45%;
-    /* Link to your background image using in the property below! */
-    background: scroll center url('../img/login.webp');
-    background-size: cover;
-  }
-  
-  .btn-login {
-    font-size: 0.9rem;
-    letter-spacing: 0.05rem;
-    padding: 0.75rem 1rem;
-  }
-  
-  .btn-google {
-    color: white !important;
-    background-color: #ea4335;
-  }
-  
-  .btn-facebook {
-    color: white !important;
-    background-color: #3b5998;
-  }
+.card-img-left {
+  width: 45%;
+  background: scroll center url('../img/login.webp');
+  background-size: cover;
+}
+
+.btn-login {
+  font-size: 0.9rem;
+  letter-spacing: 0.05rem;
+  padding: 0.75rem 1rem;
+}
+
+.btn-google {
+  color: white !important;
+  background-color: #ea4335;
+}
+
+.btn-facebook {
+  color: white !important;
+  background-color: #3b5998;
+}
+#mensaje-error {
+  color: red;
+  margin-top: 5px;
+  display: none;
+}
