@@ -1,0 +1,4 @@
+/clases/Conexion.php
+*.log  # Ignora todos los archivos con extensión .log
+/tmp/   # Ignora el directorio "tmp" en la raíz
+mi_archivo.txt # Ignora un archivo específico
