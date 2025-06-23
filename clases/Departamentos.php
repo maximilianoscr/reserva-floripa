@@ -18,7 +18,7 @@
                     "descripcion"   => $data['descripcion'],
                         "ubi"       => $data['ubi'],
                         "capacidad" => $data['capacidad'],
-                        "precio1"   => $data['precio1'],
+                        "precio"   => $data['precio'],
                         "color"     => $data['color']];
                                             
             return Interacciones::insert("t_habitaciones", $data);
@@ -46,7 +46,7 @@
                           'ubi'      => $data['ubi'],
                         'capacidad'  => $data['capacidad'],
                             'color'  => $data['color'],
-                          'precio1'  => $data['precio1']];
+                          'precio'  => $data['precio']];
 
             return Interacciones::update("t_habitaciones",$datos,"id =".$data['id']);
         }

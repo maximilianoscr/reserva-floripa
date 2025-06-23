@@ -11,7 +11,7 @@
         "descripcion" => $_POST['descripcionu'],
         "ubi" => $_POST['x_mapau'],
         "color" => $_POST['coloru'],
-        "precio1" => $_POST['preciou'],
+        "precio" => $_POST['preciou'],
         "capacidad" => $_POST['capacidadu']
     );
     

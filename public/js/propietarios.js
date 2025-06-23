@@ -1,16 +1,16 @@
 $(document).ready(function(){
-    $('#tablaDepartamentos').load('departamentos/tabla_departamentos.php');
+    $('#tablaPropietarios').load('propietarios/tabla_propietarios.php');
 });
 
-function agregarDepartamento() {
+function agregarPropietario() {
     $.ajax({
         type:"POST",
-        data:$('#frmAgregarDepartamento').serialize(),
-        url:"../servidor/departamentos/agregar.php",
+        data:$('#frmAgregarPropietario').serialize(),
+        url:"../servidor/propietarios/agregar.php",
         success:function(respuesta) {
             if (respuesta == 1) {
-                $('#tablaDepartamentos').load('departamentos/tabla_departamentos.php');
-                $('#frmAgregarDepartamento')[0].reset();
+                $('#tablaPropietarios').load('propietarios/tabla_propietarios.php');
+                $('#frmAgregarPropietario')[0].reset();
                 Swal.fire({
                     title: 'Exito!',
                     text: 'Agregado',
@@ -29,9 +29,9 @@ function agregarDepartamento() {
     return false;
 }
 
-function eliminarDepartamento(id_departamento) {
+function eliminarPropietario(id_propietario) {
     Swal.fire({
-        title: 'Estas seguro de eliminar este departamento?',
+        title: 'Estas seguro de eliminar este propietario?',
         text: "Una vez eliminado, no podra ser recuperado",
         icon: 'warning',
         showCancelButton: true,
@@ -42,11 +42,11 @@ function eliminarDepartamento(id_departamento) {
         if (result.isConfirmed) {
             $.ajax({
                 type:"POST",
-                data:'id_departamento=' + id_departamento,
-                url:"../servidor/departamentos/eliminar.php",
+                data:'id_propietario=' + id_propietario,
+                url:"../servidor/propietarios/eliminar.php",
                 success:function(respuesta) {
                     if (respuesta == 1) {
-                        $('#tablaDepartamentos').load('departamentos/tabla_departamentos.php');
+                        $('#tablaPropietarios').load('propietarios/tabla_propietarios.php');
                         Swal.fire({
                             title: 'Exito!',
                             text: 'Eliminado',
@@ -65,38 +65,31 @@ function eliminarDepartamento(id_departamento) {
       })
 }
 
-function editarDepartamento(id_departamento){
+function editarPropietario(id_propietario){
     $.ajax({
         type: "POST",
-        url: "../servidor/departamentos/editar.php",
-        data: "id_departamento=" + id_departamento,
+        url: "../servidor/propietarios/editar.php",
+        data: "id_propietario=" + id_propietario,
         success : function(respuesta) {
             respuesta = jQuery.parseJSON( respuesta );
           // alert(respuesta[0].id);
-            $('#id_depto').val(respuesta[0].id);
-            $('#titulou').val(respuesta[0].titulo);
-            $('#direccionu').val(respuesta[0].direccion);
-            $('#alturau').val(respuesta[0].altura);
-            $('#habitacionesu').val(respuesta[0].cantidad_habitacion);
+            $('#id_propietario').val(respuesta[0].id_propietario);
             $('#descripcionu').val(respuesta[0].descripcion);
-            $('#x_mapau').val(respuesta[0].ubi);
-            $('#capacidadu').val(respuesta[0].capacidad);
-            $('#preciou').val(parseFloat(respuesta[0].precio).toFixed(2));
-            $('#coloru').val(respuesta[0].color);
+            $('#correou').val(respuesta[0].correo);
         }
     });
 }
 
 
-function actualizarDepartamento() {
+function actualizarPropietario() {
     $.ajax({
         type:"POST",
-        data:$('#frmEditarDepartamento').serialize(),
-        url:"../servidor/departamentos/actualizar.php",
+        data:$('#frmEditarPropietario').serialize(),
+        url:"../servidor/propietarios/actualizar.php",
         success:function(respuesta) {
             
             if (respuesta == 1) {
-                $('#tablaDepartamentos').load('departamentos/tabla_departamentos.php');
+                $('#tablaPropietarios').load('propietarios/tabla_propietarios.php');
                 
                 Swal.fire({
                     title: 'Exito!',
@@ -113,4 +106,19 @@ function actualizarDepartamento() {
         }
     });
     return false;
+}
+
+function verPropietario(id_propietario){
+    $.ajax({
+        type: "POST",
+        url: "../servidor/propietarios/editar.php",
+        data: "id_propietario=" + id_propietario,
+        success : function(respuesta) {
+            respuesta = jQuery.parseJSON( respuesta );
+          // con(respuesta[0].id);
+          //console.log(respuesta);
+          $('#Vdescripcion').val(respuesta[0].descripcion);
+          $('#Vcorreo').val(respuesta[0].correo);
+        }
+    });
 }

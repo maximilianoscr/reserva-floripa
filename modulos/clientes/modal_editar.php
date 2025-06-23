@@ -15,15 +15,15 @@
             <label for="nombree">Nombre del cliente</label>
             <input type="text" class="form-control" id="nombree" name="nombree" required>
             <label for="dnie">DNI</label>
-            <input type="text" class="form-control" id="dnie" name="dnie" required>
+            <input type="text" class="form-control" id="dnie" name="dnie" >
             <label for="direccione">Direccion</label>
-            <input type="text" class="form-control" id="direccione" name="direccione" required>
+            <input type="text" class="form-control" id="direccione" name="direccione" >
             <label for="telu">Telefono</label>
             <input type="text" class="form-control" id="telu" name="telu" required>
             <label for="tel_altu">Telefono Alternativo</label>
-            <input type="text" class="form-control" id="tel_altu" name="tel_altu" required>
+            <input type="text" class="form-control" id="tel_altu" name="tel_altu" >
             <label for="correoe">Email</label>
-            <input type="email" class="form-control" id="correoe" name="correoe" required>
+            <input type="email" class="form-control" id="correoe" name="correoe" >
             <label for="fechaNacu">Fecha de Nacimiento</label>
             <input type="date" class="form-control" id="fechaNacu" name="fechaNacu">
         </div>

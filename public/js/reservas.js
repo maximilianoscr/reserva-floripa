@@ -137,7 +137,7 @@ function actualizarDepartamentosDisponibles() {
                             const seleccionado = depto.id == deptoOriginal ? 'selected' : '';
                             if (seleccionado) deptoDisponible = true;
                             $('#id_deptou').append(
-                                `<option value="${depto.id}|${depto.precio1}" ${seleccionado}>${depto.titulo}</option>`
+                                `<option value="${depto.id}|${depto.precio}" ${seleccionado}>${depto.titulo}</option>`
                             );
                         });
 
@@ -208,7 +208,7 @@ function cargarDepartamentos() {
                 if (Array.isArray(response) && response.length > 0) {
                     selector.append('<option value="">Selecciona un departamento...</option>');
                     response.forEach(function(depto) {
-                        selector.append(`<option value="${depto.id}|${depto.precio1}">${depto.titulo}</option>`);
+                        selector.append(`<option value="${depto.id}|${depto.precio}">${depto.titulo}</option>`);
                     });
                 } else {
                     console.error('La respuesta no es un array válido');

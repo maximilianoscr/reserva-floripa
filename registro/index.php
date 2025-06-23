@@ -7,8 +7,8 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="public/css/registro.css">
-    <link rel="stylesheet" href="public/css/estilos.css">
+    <link rel="stylesheet" href="../public/css/registro.css">
+    <link rel="stylesheet" href="../public/css/estilos.css">
     <title>Registro de usuario</title>
   </head>
   <body>
@@ -22,8 +22,10 @@
           </div>
           <div class="card-body p-4 p-sm-5">
             <h5 class="card-title text-center mb-5 fw-light fs-5">Registrarse</h5>
-            <form action="servidor/registro/registrar.php" method="post">
-
+            <form action="../servidor/registro/registrar.php" id='form-registro' method="post">
+              <p id="mensaje-error">
+                El registro de nuevas personas está deshabilitado.
+              </p>
               <div class="form-floating mb-3">
                 <input type="text" class="form-control" id="usuario" name="usuario"
                 placeholder="myusername" required autofocus>
@@ -36,10 +38,10 @@
                 <label for="password">Password</label>
               </div>
               <div class="d-grid mb-2">
-                <button class="btn btn-lg btn-purple btn-login fw-bold text-uppercase" type="submit">Registrar</button>
+                <button class="btn btn-lg btn-purple btn-login fw-bold text-uppercase" type="submit" >Registrar</button>
               </div>
 
-              <a class="d-block text-center mt-2 small" href="index.html">Si tienes una cuenta, entra!</a>
+              <a class="d-block text-center mt-2 small" href="../index.html">Si tienes una cuenta, entra!</a>
 
               <hr class="my-4">
             </form>
@@ -51,6 +53,11 @@
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-    
+    <script>
+      document.getElementById('form-registro').addEventListener('submit', function (e) {
+        document.getElementById('mensaje-error').style.display = 'block';
+        e.preventDefault();
+      });
+    </script>
   </body>
 </html>

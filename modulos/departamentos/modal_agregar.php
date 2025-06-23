@@ -14,9 +14,9 @@
             <label for="titulo">Titulo del departamento</label>
             <input type="text" class="form-control" id="titulo" name="titulo" required>
             <label for="direccion">Direccion</label>
-            <input type="text" class="form-control" id="direccion" name="direccion" required>
+            <input type="text" class="form-control" id="direccion" name="direccion" >
             <label for="altura">Altura</label>
-            <input type="text" class="form-control" id="altura" name="altura" required>
+            <input type="text" class="form-control" id="altura" name="altura" >
             <label for="habitaciones">Cantidad habitaciones</label>
             <input type="number" class="form-control" id="habitaciones" name="habitaciones" required>
             <label for="descripcion">Descripcion</label>
