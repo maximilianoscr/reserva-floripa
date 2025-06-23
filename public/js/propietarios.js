@@ -74,8 +74,8 @@ function editarPropietario(id_propietario){
             respuesta = jQuery.parseJSON( respuesta );
           // alert(respuesta[0].id);
             $('#id_propietario').val(respuesta[0].id_propietario);
-            $('#descripcionu').val(respuesta[0].descripcion);
-            $('#correou').val(respuesta[0].correo);
+            $('#descripcione').val(respuesta[0].descripcion);
+            $('#correoe').val(respuesta[0].correo);
         }
     });
 }

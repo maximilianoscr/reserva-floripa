@@ -10,8 +10,8 @@
         </div>
         <div class="modal-body">
           <input type="text" id="id_propietario" name="id_propietario" hidden>
-            <label for="dscripcione">Apellido y nombres</label>
-            <input type="text" class="form-control" id="dscripcione" name="dscripcione" required>
+            <label for="descripcione">Apellido y nombres</label>
+            <input type="text" class="form-control" id="descripcione" name="descripcione" required>
             <label for="correoe">Email</label>
             <input type="email" class="form-control" id="correoe" name="correoe" >
         </div>
