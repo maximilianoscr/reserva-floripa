@@ -85,7 +85,7 @@ function actualizarPropietario() {
     $.ajax({
         type:"POST",
         data:$('#frmEditarPropietario').serialize(),
-        url:"../servidor/propietario/actualizar.php",
+        url:"../servidor/propietarios/actualizar.php",
         success:function(respuesta) {
             
             if (respuesta == 1) {
