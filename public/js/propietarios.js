@@ -107,3 +107,18 @@ function actualizarPropietario() {
     });
     return false;
 }
+
+function verPropietario(id_propietario){
+    $.ajax({
+        type: "POST",
+        url: "../servidor/propietarios/editar.php",
+        data: "id_propietario=" + id_propietario,
+        success : function(respuesta) {
+            respuesta = jQuery.parseJSON( respuesta );
+          // con(respuesta[0].id);
+          //console.log(respuesta);
+          $('#Vdescripcion').val(respuesta[0].descripcion);
+          $('#Vcorreo').val(respuesta[0].correo);
+        }
+    });
+}
