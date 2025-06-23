@@ -10,10 +10,10 @@
         </div>
         <div class="modal-body">
           <input type="text" id="id_propietario" name="id_propietario" hidden>
-            <label for="dscripcione">Apellido y nombres</label>
-            <input type="text" class="form-control" id="dscripcione" name="dscripcione" required>
-            <label for="correoe">Email</label>
-            <input type="email" class="form-control" id="correoe" name="correoe" >
+            <label for="descripcionu">Apellido y nombres</label>
+            <input type="text" class="form-control" id="descripcionu" name="descripcionu" required>
+            <label for="correou">Email</label>
+            <input type="email" class="form-control" id="correou" name="correou" >
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
