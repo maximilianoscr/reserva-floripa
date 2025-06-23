@@ -29,6 +29,7 @@
   include "footer.php";
   include "propietarios/modal_agregar.php";
   include "propietarios/modal_editar.php";
+  include "propietarios/modal_ver.php";
 ?>
 <script src="../public/js/propietarios.js"></script>
     
