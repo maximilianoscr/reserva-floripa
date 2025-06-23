@@ -19,13 +19,13 @@
 
         public function eliminarPropietario($id_propietario) {
 
-            return Interacciones::delete("t_propietarios","id=".$id_propietario);
+            return Interacciones::delete("t_propietarios","id_propietario=".$id_propietario);
 
         }
 
         public function editarPropietario($id_propietario) {
 
-            return Interacciones::consultar("t_propietarios","*","id =".$id_propietario);
+            return Interacciones::consultar("t_propietarios","*","id_propietario=".$id_propietario);
 
         }
 
@@ -34,6 +34,6 @@
             $datos=[      'descripcion'   => $data['descripcion'],
                           'correo'  => $data['correo']];
 
-            return Interacciones::update("t_propietarios",$datos,"id =".$data['id']);
+            return Interacciones::update("t_propietarios",$datos,"id_propietario=".$data['id']);
         }
     }
