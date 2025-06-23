@@ -34,6 +34,6 @@
             $datos=[      'descripcion'   => $data['descripcion'],
                           'correo'  => $data['correo']];
 
-            return Interacciones::update("t_propietarios",$datos,"id_propietario=".$data['id']);
+            return Interacciones::update("t_propietarios",$datos,"id_propietario=".$data['id_propietario']);
         }
     }
