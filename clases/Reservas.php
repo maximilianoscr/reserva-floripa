@@ -1,5 +1,5 @@
 <?php
-    include "Conexion.php";
+    include_once "Conexion.php";
 
     class Reservas extends Interacciones {
         public function mostrarReservas($id_usuario, $filtro=null) {

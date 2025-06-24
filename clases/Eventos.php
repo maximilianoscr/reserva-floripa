@@ -1,5 +1,5 @@
 <?php
-    include "Conexion.php";
+    include_once "Conexion.php";
 
     class Eventos extends Conexion {
         public function mostrarEventos($id_usuario, $fecha) {
