@@ -1,3 +1,3 @@
 <?php
 // index.php
-readfile(__DIR__ . '/frontend/build/index.html');
+readfile(__DIR__ . '/build/index.html');
