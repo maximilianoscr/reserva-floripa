@@ -1,5 +1,5 @@
 <?php
-class Conexion {
+class Conexion1 {
     // public $servidor = 'sql10.freesqldatabase.com';
     // public $usuario = 'sql10746493';
     // public $password = 'XJahj5jn4W';
