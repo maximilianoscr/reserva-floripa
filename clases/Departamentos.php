@@ -1,5 +1,5 @@
 <?php
-    include "Conexion.php";
+    include_once "Conexion.php";
 
     class Departamentos extends Interacciones {
 
@@ -18,7 +18,8 @@
                     "descripcion"   => $data['descripcion'],
                         "ubi"       => $data['ubi'],
                         "capacidad" => $data['capacidad'],
-                        "precio"   => $data['precio'],
+                         "precio"   => $data['precio'],
+                   'id_propietario' => $data['id_propietario'],
                         "color"     => $data['color']];
                                             
             return Interacciones::insert("t_habitaciones", $data);
@@ -46,7 +47,8 @@
                           'ubi'      => $data['ubi'],
                         'capacidad'  => $data['capacidad'],
                             'color'  => $data['color'],
-                          'precio'  => $data['precio']];
+                    'id_propietario' => $data['id_propietario'],
+                          'precio'   => $data['precio']];
 
             return Interacciones::update("t_habitaciones",$datos,"id =".$data['id']);
         }
