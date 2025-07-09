@@ -11,6 +11,8 @@
           <input type="text" id="id_depto" name="id_depto" hidden>
             <label for="titulou">Titulo del departamento</label>
             <input type="text" class="form-control" id="titulou" name="titulou" required>
+            <label for="propietariou">Propietario</label>
+            <input type="text" class="form-control" id="propietariou" name="propietariou" readonly>
             <label for="direccionu">Direccion</label>
             <input type="text" class="form-control" id="direccionu" name="direccionu" >
             <label for="alturau">Altura</label>

@@ -1,5 +1,16 @@
-<?php  
-  //$select = $Departamentos->selectReservas($_SESSION['id_usuario']);
+<?php 
+    include "../clases/Propietarios.php";
+    $Propietarios = new Propietarios();
+    $props = $Propietarios->mostrarPropietarios($_SESSION['id_usuario']);
+    $select_propietarios="<label for='id_propietario'>Selecciona un propietario</label>".
+                "<select name='id_propietario' id='id_propietario' class='form-select' required>'";
+                $select_propietarios.='<option value=-1>Propietarios</option>'; 
+    foreach($props as $id => $dato){
+      $select_propietarios.='<option value='. $dato['id_propietario'] . '>' . 
+                                  $dato['descripcion']." (".$dato['correo'].")".
+                        '</option>'; 
+    }
+    $select_propietarios.= '</select>';
 ?>
 
 <form id="frmAgregarDepartamento" onsubmit="return agregarDepartamento()">
@@ -13,6 +24,7 @@
         <div class="modal-body">
             <label for="titulo">Titulo del departamento</label>
             <input type="text" class="form-control" id="titulo" name="titulo" required>
+            <?php echo $select_propietarios; ?>
             <label for="direccion">Direccion</label>
             <input type="text" class="form-control" id="direccion" name="direccion" >
             <label for="altura">Altura</label>
