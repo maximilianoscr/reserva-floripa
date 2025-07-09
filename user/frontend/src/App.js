@@ -1,40 +1,23 @@
-import { useState } from "react";
+import logo from './logo.svg';
+import './App.css';
 
 function App() {
-  const [datos, setDatos] = useState([]);
-  const [titulo, setTitulo] = useState("Clientes");
-
-  const endpoints = {
-    Clientes: "http://localhost/reserva/reserva-floripa/servidor/clientes/cliente.php",
-    Habitaciones: "http://localhost/reserva/reserva-floripa/servidor/departamentos/departamento.php",
-    Propietarios: "http://localhost/reserva/reserva-floripa/servidor/propietarios/propietario.php"
-  };
-
-  const cargarDatos = (entidad) => {
-    setTitulo(entidad);
-    fetch(endpoints[entidad])
-      .then((res) => res.json())
-      .then((data) => setDatos(data))
-      .catch((err) => console.error(`Error al cargar ${entidad.toLowerCase()}:`, err));
-  };
-
   return (
-    <div style={{ padding: "1rem" }}>
-      <h1>{titulo}</h1>
-
-      <div style={{ marginBottom: "1rem" }}>
-        {Object.keys(endpoints).map((entidad) => (
-          <button key={entidad} onClick={() => cargarDatos(entidad)} style={{ marginRight: "10px" }}>
-            {entidad}
-          </button>
-        ))}
-      </div>
-
-      <ul>
-        {datos.map((item, index) => (
-          <li key={index}>{JSON.stringify(item)}</li>
-        ))}
-      </ul>
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
     </div>
   );
 }
