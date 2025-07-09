@@ -1,3 +1,4 @@
 <?php
-// index.php
-readfile(__DIR__ . '/build/index.html');
+readfile(__DIR__ . '/index.html');
+
+?>
