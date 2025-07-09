@@ -18,7 +18,7 @@
         public function logear(string $usuario,string $password): bool {
             $password_usuario = "";
             $respuesta = Interacciones::consultar("t_usuarios","*","usuario = '$usuario'");
-            //print_r($respuesta);
+            
             if (count($respuesta) > 0) {
                 foreach($respuesta as $resp){
                     $password_usuario = $resp['password'];
@@ -27,13 +27,11 @@
                         $_SESSION['usuario'] = $usuario;
                         $_SESSION['id_usuario'] = $resp['id_usuario'];
                         return true;
-                    } else {
-                        return false;
                     }
                 }
-            } else {
-                return false;
             }
+            return false;
+            
         }
         
         public function usuarioExiste(string $usuario): bool {
