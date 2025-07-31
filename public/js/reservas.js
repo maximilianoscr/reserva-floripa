@@ -275,3 +275,55 @@ function validarSeleccionCliente() {
       return false; 
     }
 }
+function generarComprobante(idReserva) {
+
+
+  const esCelular = window.innerWidth < 768;
+  const fondo = esCelular
+    ? "../public/img/login.webp"
+    : "../public/img/portada.webp";
+
+  fetch(`../servidor/reservas/buscar.php?id_reserva=${idReserva}`)
+    .then(res => res.json())
+    .then(data => {
+      const contenido = `
+        <div><strong>Título:</strong><br> ${data.titulo}</div>
+        <div><strong>Departamento:</strong><br> ${data.depto}</div>
+        <div><strong>Dirección:</strong><br> ${data.direccion}</div>
+        <div><strong>Capacidad:</strong><br> ${data.capacidad} personas</div>
+        <div><strong>Propietario:</strong><br> ${data.propietario}</div>
+        <div><strong>Fecha de entrada:</strong><br> ${data.entrada}</div>
+        <div><strong>Fecha de salida:</strong><br> ${data.salida}</div>
+        `;
+
+      document.getElementById("nombreCliente").innerText = data.cliente;
+      document.getElementById("codigoReserva").innerText = `Código de reserva: ${data.codigo}`;
+      document.getElementById("contenidoComprobante").innerHTML = contenido;
+
+
+      comprobante.style.backgroundImage = `url('${fondo}')`;
+      comprobante.style.display = 'block';
+
+      document.getElementById("contenidoComprobante").innerHTML = contenido;
+
+      const opciones = {
+        margin: 0,
+        filename: `reserva_${data.codigo}.pdf`,
+        image: { type: 'jpeg', quality: 1 },
+        html2canvas: { scale: 2 },
+        jsPDF: {
+          unit: 'mm',
+          format: 'a4',
+          orientation: esCelular ? 'portrait' : 'landscape'
+        }
+      };
+      html2pdf().set(opciones).from(comprobante).save().then(() => {
+        comprobante.style.display = 'none';
+        comprobante.style.visibility = 'visible';
+      });
+    })
+    .catch(err => {
+      alert("Error al generar comprobante");
+      console.error(err);
+    });
+}
