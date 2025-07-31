@@ -283,7 +283,7 @@ function generarComprobante(idReserva) {
     ? "../public/img/login.webp"
     : "../public/img/portada.webp";
 
-  fetch(`../../servidor/reservas/buscar.php?id_reserva=${idReserva}`)
+  fetch(`../servidor/reservas/buscar.php?id_reserva=${idReserva}`)
     .then(res => res.json())
     .then(data => {
       const contenido = `
