@@ -28,7 +28,7 @@
 
             
             <td>
-                <a class="btn btn-info" href="reservas/imprimir.php">
+                <a class="btn btn-info"  onclick="generarComprobante('<?php echo $key['id_reserva'] ?>')">
                      <i class="fa-solid fa-print"></i> 
                      <span class="badge bg-secondary"></span>
                 </a>
@@ -45,17 +45,21 @@
                     <i class="fa-solid fa-calendar-xmark"></i>
                 </span>
             </td>
+            
         </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
 
+
+
+
 <script>
-    $(document).ready(function(){
-        $('#tabla_reservas_load').DataTable({
-            "language": {
-                "url": "../public/librerias/datatables/Spanish.json"
-            }
-        });
+$(document).ready(function(){
+    $('#tabla_reservas_load').DataTable({
+        "language": {
+            "url": "../public/librerias/datatables/Spanish.json"
+        }
     });
+});
 </script>

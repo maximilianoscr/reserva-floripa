@@ -1,7 +1,6 @@
-body {
+#comprobante {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: url('../img/portada.webp') no-repeat center center fixed;
   background-size: cover;
   color: #000;
   display: flex;
@@ -10,19 +9,19 @@ body {
   text-align: center;
 }
 
-header {
+#comprobante header {
   background: rgba(255, 255, 255, 0.85);
   padding: 2rem;
   width: 100%;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
-header h1 {
+#comprobante header h1 {
   margin: 0.5rem 0;
   font-size: 2.5rem;
 }
 
-.container {
+#comprobante .container {
   background: rgba(255, 255, 255, 0.83);
   border-radius: 16px;
   margin: 2rem;
@@ -31,20 +30,20 @@ header h1 {
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-.info {
+#comprobante .info {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   margin-top: 1rem;
 }
 
-.info div {
+#comprobante .info div {
   width: 45%;
   margin: 1rem 0;
   text-align: left;
 }
 
-.btn-contactar {
+#comprobante .btn-contactar {
   margin-top: 2rem;
   padding: 0.75rem 2rem;
   background: #007bff;
@@ -55,6 +54,6 @@ header h1 {
   cursor: pointer;
 }
 
-.btn-contactar:hover {
+#comprobante .btn-contactar:hover {
   background: #0056b3;
 }

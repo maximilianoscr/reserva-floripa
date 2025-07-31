@@ -11,3 +11,67 @@
     border-color: #a0a53c;
     color: #fff; /* Color del texto en blanco */
   }
+
+
+  #comprobante {
+  width: 99%;
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-size: cover;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+#comprobante header {
+  margin: 2rem auto;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 2rem;
+  width: 80%;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+#comprobante header h1 {
+  margin: 0.5rem 0;
+  font-size: 2.5rem;
+}
+
+#comprobante .container {
+  background: rgba(255, 255, 255, 0.83);
+  border-radius: 16px;
+  padding: 2rem;
+  max-width: 80%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  margin: 2rem auto;
+
+}
+
+#comprobante .info {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+#comprobante .info div {
+  width: 45%;
+  margin: 1rem 0;
+  text-align: left;
+}
+
+#comprobante .btn-contactar {
+  margin-top: 2rem;
+  padding: 0.75rem 2rem;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+#comprobante .btn-contactar:hover {
+  background: #0056b3;
+}
