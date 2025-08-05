@@ -23,7 +23,7 @@
                         h.titulo AS depto, h.id AS id_departamento,CONCAT(h.direccion,' ',h.altura) AS direccion, h.capacidad,h.color,
                         u.id_usuario,
                         c.id_cliente, CONCAT(c.apellido,', ',c.nombre) as cliente,
-                        h.descripcion as propietario";
+                        h.descripcion";
             $tabla="t_reservas a 
             INNER JOIN t_habitaciones h ON h.id=a.id_depto
             INNER JOIN t_usuarios u ON u.id_usuario=a.id_usuario

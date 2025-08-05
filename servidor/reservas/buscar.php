@@ -31,6 +31,6 @@ echo json_encode([
     "direccion"   => $reserva['direccion'],
     "capacidad"   => $reserva['capacidad'],
     "codigo"      => $reserva['id_reserva'],
-    "propietario" => $reserva['propietario'],
+    "descripcion" => $reserva['descripcion'],
     "titulo"      => $reserva['titulo']
 ]);
