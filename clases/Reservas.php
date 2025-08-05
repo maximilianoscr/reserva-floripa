@@ -21,9 +21,9 @@
         public function buscarReserva($id_reserva) {
             $solicitado = "a.id_reserva,a.id_usuario, a.titulo,DATE(a.fecha_inicio) as fecha_inicio,DATE(a.fecha_fin) AS fecha_fin,a.fecha_carga,
                         h.titulo AS depto, h.id AS id_departamento,CONCAT(h.direccion,' ',h.altura) AS direccion, h.capacidad,h.color,
-                        u.id_usuario,
+                        u.id_usuario,h.desc
                         c.id_cliente, CONCAT(c.apellido,', ',c.nombre) as cliente,
-                        h.descripcion as propietario";
+                        h.descripcion";
             $tabla="t_reservas a 
             INNER JOIN t_habitaciones h ON h.id=a.id_depto
             INNER JOIN t_usuarios u ON u.id_usuario=a.id_usuario
