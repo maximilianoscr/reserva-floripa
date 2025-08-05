@@ -37,21 +37,7 @@
     </div>
   </div>
 </div>
-<!-- Plantilla del comprobante -->
-<div id="comprobante" class="comprobante-pdf" style="display: none; padding:0.5%;">
-    <header>
-      <img src="../public/img/logo2.png" alt="Reserva·Web" width="80" />
-      <h1>CONFIRMACIÓN DE RESERVA</h1>
-    </header>
 
-    <section class="container">
-      <h2 id="nombreCliente"></h2>
-      <div class="info" id="contenidoComprobante">
-        <!-- contenido dinámico generado por JS -->
-      </div>
-      <p><strong id="codigoReserva">Código de reserva: 5829KH</strong></p>
-    </section>
-</div>
 <?php 
   include "reservas/modal_agregar.php";
   include "reservas/modal_editar.php";

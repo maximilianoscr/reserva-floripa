@@ -276,54 +276,52 @@ function validarSeleccionCliente() {
     }
 }
 function generarComprobante(idReserva) {
-
-
   const esCelular = window.innerWidth < 768;
   const fondo = esCelular
     ? "../public/img/login.webp"
     : "../public/img/portada.webp";
 
-  fetch(`../servidor/reservas/buscar.php?id_reserva=${idReserva}`)
-    .then(res => res.json())
-    .then(data => {
-      const contenido = `
-        <div><strong>Título:</strong><br> ${data.titulo}</div>
-        <div><strong>Departamento:</strong><br> ${data.depto}</div>
-        <div><strong>Dirección:</strong><br> ${data.direccion}</div>
-        <div><strong>Capacidad:</strong><br> ${data.capacidad} personas</div>
-        <div><strong>Descripcion:</strong><br> ${data.descripcion}</div>
-        <div><strong>Fecha de entrada:</strong><br> ${data.entrada}</div>
-        <div><strong>Fecha de salida:</strong><br> ${data.salida}</div>
-        `;
+  Promise.all([
+    fetch(`../servidor/reservas/buscar.php?id_reserva=${idReserva}`).then(res => res.json()),
+    fetch("../modulos/reservas/imprimir.html").then(res => res.text())
+  ])
+  .then(([data, plantilla]) => {
+    // Reemplazar los placeholders
+    let html = plantilla
+      .replace("{{cliente}}", data.cliente)
+      .replace("{{titulo}}", data.titulo)
+      .replace("{{depto}}", data.depto)
+      .replace("{{direccion}}", data.direccion)
+      .replace("{{capacidad}}", data.capacidad)
+      .replace("{{descripcion}}", data.descripcion)
+      .replace("{{entrada}}", data.entrada)
+      .replace("{{salida}}", data.salida)
+      .replace("{{codigo}}", data.codigo);
 
-      document.getElementById("nombreCliente").innerText = data.cliente;
-      document.getElementById("codigoReserva").innerText = `Código de reserva: ${data.codigo}`;
-      document.getElementById("contenidoComprobante").innerHTML = contenido;
+    // Crear un contenedor temporal
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = html;
 
+    const comprobante = tempDiv.querySelector("#comprobante");
 
-      comprobante.style.backgroundImage = `url('${fondo}')`;
-      comprobante.style.display = 'block';
+    comprobante.style.backgroundImage = `url('${fondo}')`;
 
-      document.getElementById("contenidoComprobante").innerHTML = contenido;
+    const opciones = {
+      margin: 0,
+      filename: `reserva_${data.codigo}.pdf`,
+      image: { type: 'jpeg', quality: 1 },
+      html2canvas: { scale: 2 },
+      jsPDF: {
+        unit: 'mm',
+        format: 'a4',
+        orientation: esCelular ? 'portrait' : 'landscape'
+      }
+    };
 
-      const opciones = {
-        margin: 0,
-        filename: `reserva_${data.codigo}.pdf`,
-        image: { type: 'jpeg', quality: 1 },
-        html2canvas: { scale: 2 },
-        jsPDF: {
-          unit: 'mm',
-          format: 'a4',
-          orientation: esCelular ? 'portrait' : 'landscape'
-        }
-      };
-      html2pdf().set(opciones).from(comprobante).save().then(() => {
-        comprobante.style.display = 'none';
-        comprobante.style.visibility = 'visible';
-      });
-    })
-    .catch(err => {
-      alert("Error al generar comprobante");
-      console.error(err);
-    });
+    html2pdf().set(opciones).from(comprobante).save();
+  })
+  .catch(err => {
+    alert("Error al generar comprobante");
+    console.error(err);
+  });
 }
