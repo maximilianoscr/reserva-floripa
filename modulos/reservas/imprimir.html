@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Descargar reserva</title>
+</head>
+<body>
+    <!-- public/plantilla_comprobante.html -->
+    <div id="comprobante" class="comprobante">
+    <header>
+        <img src="../public/img/logo.webp" alt="Reserva·Web" width="80" />
+        <h1>CONFIRMACIÓN DE RESERVA</h1>
+    </header>
+
+    <section class="container">
+        <h2 id="nombreCliente">{{cliente}}</h2>
+        <div class="info">
+        <div><strong>Título:</strong><br> {{titulo}}</div>
+        <div><strong>Departamento:</strong><br> {{depto}}</div>
+        <div><strong>Dirección:</strong><br> {{direccion}}</div>
+        <div><strong>Capacidad:</strong><br> {{capacidad}} personas</div>
+        <div><strong>Descripción:</strong><br> {{descripcion}}</div>
+        <div><strong>Fecha de entrada:</strong><br> {{entrada}}</div>
+        <div><strong>Fecha de salida:</strong><br> {{salida}}</div>
+        </div>
+        <p id="codigoReserva"><strong>Código de reserva:</strong> {{codigo}}</p>
+    </section>
+    </div>
+
+</body>
+<script src="../../public/js/reservas.js"></script>
+</html>
