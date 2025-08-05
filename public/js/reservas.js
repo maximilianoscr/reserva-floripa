@@ -291,7 +291,7 @@ function generarComprobante(idReserva) {
         <div><strong>Departamento:</strong><br> ${data.depto}</div>
         <div><strong>Dirección:</strong><br> ${data.direccion}</div>
         <div><strong>Capacidad:</strong><br> ${data.capacidad} personas</div>
-        <div><strong>Propietario:</strong><br> ${data.propietario}</div>
+        <div><strong>Descripcion:</strong><br> ${data.descripcion}</div>
         <div><strong>Fecha de entrada:</strong><br> ${data.entrada}</div>
         <div><strong>Fecha de salida:</strong><br> ${data.salida}</div>
         `;
