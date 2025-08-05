@@ -35,7 +35,7 @@
 
             return Interacciones::consultar("t_habitaciones h 
             INNER JOIN t_propietarios p ON p.id_propietario=h.id_propietario
-            ","h.*,p.descripcion","h.id =".$id_departamento);
+            ","h.*,p.descripcion as propietario","h.id =".$id_departamento);
 
         }
 
