@@ -25,10 +25,10 @@
                         c.id_cliente, CONCAT(c.apellido,', ',c.nombre) as cliente,
                         h.descripcion";
             $tabla="t_reservas a 
-            INNER JOIN t_habitaciones h ON h.id=a.id_depto
-            INNER JOIN t_usuarios u ON u.id_usuario=a.id_usuario
-            INNER JOIN t_clientes c ON c.id_cliente=a.id_cliente
-            INNER JOIN t_propietarios p ON p.id_propietario=h.id_propietario";
+            LEFT JOIN t_habitaciones h ON h.id=a.id_depto
+            LEFT JOIN t_usuarios u ON u.id_usuario=a.id_usuario
+            LEFT JOIN t_clientes c ON c.id_cliente=a.id_cliente
+            LEFT JOIN t_propietarios p ON p.id_propietario=h.id_propietario";
             $filtro="a.id_reserva=$id_reserva";
             if ($filtro != "") {
                 return Interacciones::consultar($tabla,$solicitado,$filtro);
