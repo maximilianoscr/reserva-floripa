@@ -49,7 +49,6 @@
                           'ubi'      => $data['ubi'],
                         'capacidad'  => $data['capacidad'],
                             'color'  => $data['color'],
-                    'id_propietario' => $data['id_propietario'],
                           'precio'   => $data['precio']];
 
             return Interacciones::update("t_habitaciones",$datos,"id =".$data['id']);

@@ -280,7 +280,6 @@ function generarComprobante(idReserva) {
   const fondo = esCelular
     ? "../public/img/login.webp"
     : "../public/img/portada.webp";
-
   Promise.all([
     fetch(`../servidor/reservas/buscar.php?id_reserva=${idReserva}`).then(res => res.json()),
     fetch("../modulos/reservas/imprimir.html").then(res => res.text())
@@ -305,17 +304,24 @@ function generarComprobante(idReserva) {
     const comprobante = tempDiv.querySelector("#comprobante");
 
     comprobante.style.backgroundImage = `url('${fondo}')`;
+    if (esCelular) {
+    comprobante.style.width = "210mm";
+    comprobante.style.height = "296mm";
+    } else {
+    comprobante.style.width = "297mm";  // A4 horizontal
+    comprobante.style.height = "210mm"; // A4 horizontal
+    }
 
     const opciones = {
-      margin: 0,
-      filename: `reserva_${data.codigo}.pdf`,
-      image: { type: 'jpeg', quality: 1 },
-      html2canvas: { scale: 2 },
-      jsPDF: {
-        unit: 'mm',
-        format: 'a4',
-        orientation: esCelular ? 'portrait' : 'landscape'
-      }
+        margin: [0, 0, 0, 0],
+        filename: 'comprobante.pdf',
+        image: { type: 'jpeg', quality: 1 },
+        html2canvas: { scale: 2 },
+        jsPDF: {
+            unit: 'mm',
+            format: 'a4',
+            orientation: window.innerWidth < 768 ? 'portrait' : 'landscape'
+        }
     };
 
     html2pdf().set(opciones).from(comprobante).save();
