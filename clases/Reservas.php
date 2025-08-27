@@ -63,7 +63,7 @@
                           'titulo' => $data['titulo'],
                     'fecha_inicio' => $data['fecha_inicio'].' 14:00:00',
                        'fecha_fin' => $data['fecha_fin'].' 10:00:00',
-                     'fecha_carga' => 'NOW ()',
+                     'fecha_carga' => date('Y-m-d H:i:s'),
                      'valor_total' => $data['valor_total'],
                     'pago_parcial' => $data['pago_parcial'],
                      'observacion' => $data['obs']
@@ -84,7 +84,7 @@
                            'titulo' => $data['titulo'],
                   'fecha_inicio'    => $data['fecha_inicio']. ' 14:00:00',
                         'fecha_fin' => $data['fecha_fin']. ' 10:00:00',
-                     'fecha_carga'  => 'NOW ()',
+                     'fecha_carga'  => date('Y-m-d H:i:s'),
                       'valor_total' => $data['total'],
                     'pago_parcial'  => $data['parcial'],
                      'observacion'  => $data['obs']];
