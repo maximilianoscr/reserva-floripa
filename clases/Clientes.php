@@ -48,4 +48,13 @@
             return Interacciones::update("t_clientes",$datos,"id_cliente =".$data['id_cliente']);
 
         }
+        public function getMoneda(){
+
+            $solicitado='*';
+            $tabla="t_moneda";
+            $filtro="1=1";
+
+            return Interacciones::consultar($tabla, $solicitado, $filtro);
+
+        }
     }

@@ -10,6 +10,7 @@
         'titulo' => $_POST['nombre_reserva'], 
         'fecha_inicio' => $_POST['fecha_inicio'], 
         'fecha_fin' => $_POST['fecha_fin'],
+        'moneda' => $_POST['moneda'], 
         'valor_total' => $_POST['total'],
         'pago_parcial' => $_POST['parcial'],
         'obs' => $_POST['obs']

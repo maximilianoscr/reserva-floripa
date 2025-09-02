@@ -59,7 +59,8 @@ $(document).ready(function(){
     $('#tabla_reservas_load').DataTable({
         "language": {
             "url": "../public/librerias/datatables/Spanish.json"
-        }
+        },
+        "order": [[2, "desc"]] 
     });
 });
 </script>

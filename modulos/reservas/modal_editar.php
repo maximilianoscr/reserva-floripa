@@ -1,3 +1,17 @@
+<?php
+
+$moneda= $Clientes->getMoneda();
+$select_monedau="<label for='monedau'>Selecciona el tipo de cambio</label>".
+                "<select name='monedau' id='monedau' class='form-select' required>'";
+                $select_monedau.='<option value=-1>Seleccionar Moneda</option>'; 
+foreach($moneda as $id => $dato){
+  $select_monedau.='<option value='. $dato['id'] . '>' . 
+                               $dato['sigla']." (".$dato['descripcion'].")".
+                    '</option>'; 
+}
+$select_monedau.= '</select>';
+
+?>
 <form id="frmEditarReserva" onsubmit="return actualizarReserva()">
   <!-- Modal -->
 <div class="modal fade" id="modal_editar_reserva" tabindex="-1" aria-labelledby="modal_editar_reservaLabel" aria-hidden="true">
@@ -20,6 +34,8 @@
           <input type="date" class="form-control" id="fecha_iniciou" name="fecha_iniciou" required>
           <label for="fecha_finu">Fecha fin</label>
           <input type="date" class="form-control" id="fecha_finu" name="fecha_finu" required>
+          <label for="monedau">Departamento</label>
+          <?php echo $select_monedau; ?>
           <label for="totalu">Valor total</label>
           <input type="text" class="form-control" id="totalu" name="totalu" required>
           <label for="parcialu">Pago</label>
