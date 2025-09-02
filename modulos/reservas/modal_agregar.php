@@ -3,6 +3,8 @@
 include "../clases/Clientes.php";
 $Clientes = new Clientes();
 $items = $Clientes->mostrarClientes(1);
+$moneda= $Clientes->getMoneda();
+//print_r($moneda);
 $select_clientes="<label for='id_cliente'>Selecciona un cliente</label>".
                 "<select name='id_cliente' id='id_cliente' class='form-select' required>'";
                 $select_clientes.='<option value=-1>SELECCIONAR UN CLIENTE</option>'; 
@@ -12,7 +14,15 @@ foreach($items as $id => $dato){
                     '</option>'; 
 }
 $select_clientes.= '</select>';
-
+$select_moneda="<label for='moneda'>Selecciona el tipo de cambio</label>".
+                "<select name='moneda' id='moneda' class='form-select' required>'";
+                $select_moneda.='<option value=-1>Seleccionar Moneda</option>'; 
+foreach($moneda as $id => $dato){
+  $select_moneda.='<option value='. $dato['id'] . '>' . 
+                               $dato['sigla']." (".$dato['descripcion'].")".
+                    '</option>'; 
+}
+$select_moneda.= '</select>';
 ?>
 <form id="frmAgregarReserva" onsubmit="return agregarReserva()">
   <div class="modal fade" id="modal_agregar_reserva" tabindex="-1" aria-labelledby="modal_agregar_reservaLabel" aria-hidden="true">
@@ -34,6 +44,7 @@ $select_clientes.= '</select>';
           <select name="id_depto" id="id_depto" class="form-select" required="">
             <option value="">Por favor, cargar ingreso y egreso</option>
           </select>
+          <?php echo $select_moneda ; ?>
           <label for="total">Valor total</label>
           <input type="text" class="form-control" id="total" name="total" required>
           <label for="parcial">Pago</label>

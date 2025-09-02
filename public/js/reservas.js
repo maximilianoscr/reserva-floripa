@@ -91,12 +91,20 @@ function editarReserva(id_reserva){
             $('#fecha_finu').val(respuesta[0].fecha_fin);
             $('#totalu').val(respuesta[0].valor_total);
             $('#parcialu').val(respuesta[0].pago_parcial);
+            if ($('#monedau').length) {
+    $('#monedau').val(String(respuesta[0].id_moneda));
+} else {
+    console.warn("Selector #monedau no encontrado");
+}
+
             $('#obsu').val(respuesta[0].observacion);
             $('#id_reserva').val(respuesta[0].id_reserva);
             // Almacenar el ID del departamento original
             $('#id_deptou').data('original-depto', respuesta[0].id_depto);
             configurarEventosDeFecha();
+            console.log(respuesta);
         }
+        
     });
 }
 function configurarEventosDeFecha() {
@@ -288,7 +296,7 @@ function generarComprobante(idReserva) {
     // Reemplazar los placeholders
     let html = plantilla
       .replace("{{cliente}}", data.cliente)
-      .replace("{{titulo}}", data.titulo)
+      .replace("{{moneda}}", data.moneda)
       .replace("{{depto}}", data.depto)
       .replace("{{direccion}}", data.direccion)
       .replace("{{capacidad}}", data.capacidad)
