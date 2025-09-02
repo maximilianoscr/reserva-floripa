@@ -28,11 +28,11 @@
                         h.descripcion,
                         m.sigla,m.descripcion as moneda";
             $tabla="t_reservas a 
-            INNER JOIN t_habitaciones h ON h.id=a.id_depto
-            INNER JOIN t_usuarios u ON u.id_usuario=a.id_usuario
-            INNER JOIN t_clientes c ON c.id_cliente=a.id_cliente
-            INNER JOIN t_propietarios p ON p.id_propietario=h.id_propietario
-            INNER JOIN t_moneda m ON m.id=a.moneda";
+            LEFT JOIN t_habitaciones h ON h.id=a.id_depto
+            LEFT JOIN t_usuarios u ON u.id_usuario=a.id_usuario
+            LEFT JOIN t_clientes c ON c.id_cliente=a.id_cliente
+            LEFT JOIN t_propietarios p ON p.id_propietario=h.id_propietario
+            LEFT JOIN t_moneda m ON m.id=a.moneda";
             $filtro="a.id_reserva=$id_reserva";
             if ($filtro != "") {
                 return Interacciones::consultar($tabla,$solicitado,$filtro);
