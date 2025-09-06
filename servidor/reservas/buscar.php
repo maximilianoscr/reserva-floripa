@@ -30,6 +30,7 @@ echo json_encode([
     "depto"       => $reserva['depto'],
     "direccion"   => $reserva['direccion'],
     "moneda"      => $reserva['valor_total']." ".$reserva['sigla']." (".$reserva['moneda'].")",
+    "restante"    => $reserva['restante']." ".$reserva['sigla']." (".$reserva['moneda'].")",
     "capacidad"   => $reserva['capacidad'],
     "codigo"      => $reserva['id_reserva'],
     "descripcion" => $reserva['descripcion'],
