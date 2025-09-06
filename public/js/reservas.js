@@ -297,6 +297,7 @@ function generarComprobante(idReserva) {
     let html = plantilla
       .replace("{{cliente}}", data.cliente)
       .replace("{{moneda}}", data.moneda)
+      .replace("{{restante}}", data.restante)
       .replace("{{depto}}", data.depto)
       .replace("{{direccion}}", data.direccion)
       .replace("{{capacidad}}", data.capacidad)
