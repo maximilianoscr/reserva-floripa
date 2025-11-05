@@ -85,17 +85,17 @@ function editarReserva(id_reserva){
         success : function(respuesta) {
             respuesta = jQuery.parseJSON( respuesta );
             $('#nombre_reservau').val(respuesta[0].titulo);
-            $('#id_deptou').append(`<option value="${respuesta[0].id_depto}">${respuesta[0].depto}</option>`);
+            $('#id_deptou').append(`<option selected value="${respuesta[0].id_depto}">${respuesta[0].depto}</option>`);
             $('#clienteu').val(respuesta[0].cliente);
             $('#fecha_iniciou').val(respuesta[0].fecha_inicio);
             $('#fecha_finu').val(respuesta[0].fecha_fin);
             $('#totalu').val(respuesta[0].valor_total);
             $('#parcialu').val(respuesta[0].pago_parcial);
             if ($('#monedau').length) {
-    $('#monedau').val(String(respuesta[0].id_moneda));
-} else {
-    console.warn("Selector #monedau no encontrado");
-}
+                $('#monedau').val(String(respuesta[0].id_moneda));
+            } else {
+                console.warn("Selector #monedau no encontrado");
+            }
 
             $('#obsu').val(respuesta[0].observacion);
             $('#id_reserva').val(respuesta[0].id_reserva);
@@ -269,20 +269,40 @@ $(document).ready(function () {
     calcularPrecio();
 });
 function validarSeleccionCliente() {
-    const select = document.getElementById('id_cliente');
-    const selectedValue = parseInt(select.value, 10);
-  
-    if (selectedValue > 0) {
-      return true; 
-    } else {
-        const option = select.querySelector('option[value="-1"]');
-        if (option) {
-          option.textContent = "Selecciona un cliente válido"; // Modifica el texto de la opción existente
-        }
-      select.style.border = "2px solid red"; 
-      return false; 
+  const select = document.getElementById('id_cliente');
+  const selectedValue = parseInt(select.value, 10);
+  const select2 = document.getElementById('moneda');
+  const selectedValue2 = parseInt(select2.value, 10);
+
+  let esValido = true;
+
+  // Validar cliente
+  if (selectedValue <= 0) {
+    const option = select.querySelector('option[value="-1"]');
+    if (option) {
+      option.textContent = "Selecciona un cliente válido";
     }
+    select.style.border = "2px solid red";
+    esValido = false;
+  } else {
+    select.style.border = "";
+  }
+
+  // Validar moneda
+  if (selectedValue2 <= 0) {
+    const option2 = select2.querySelector('option[value="-1"]');
+    if (option2) {
+      option2.textContent = "Selecciona una moneda válida";
+    }
+    select2.style.border = "2px solid red";
+    esValido = false;
+  } else {
+    select2.style.border = ""; 
+  }
+
+  return esValido;
 }
+
 function generarComprobante(idReserva) {
   const esCelular = window.innerWidth < 768;
   const fondo = esCelular
